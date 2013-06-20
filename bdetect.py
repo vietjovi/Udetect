@@ -16,7 +16,19 @@ def copyAll(src, dst):
             shutil.copy(src, dst)
         else: raise
 
-#bdetect add path
+def walkDir(path):
+    dirS = []
+    for (path, dirs, files) in os.walk(path):
+        dirS.append([path, files])
+        #print dirs
+        #dir files
+        #raw_input()
+    return dirS
+def countFiles(Barr):
+    for files in os.walk(path):
+        print files
+    return 0
+
 
 #
 #variables
@@ -31,9 +43,7 @@ config = ConfigParser.RawConfigParser()
 if len(sys.argv) <= 1:
     print 'Bdetect v1.0 (c)2012 by S3K4 team - a very fast logon Joomla Cracker - support all version'
     print 'Website: http://www.uns.vn'
-    print 'Mail   : zonesec@gmail.com'
-    print ''
-    print 'Syntax: python BJoomla [-u USER|-U FILE] [-p PASS|-P FILE] -h URL [OPT]'
+    print 'Mail   : contact@uns.vn'
     print ''
     print 'Options:'
     print 'add project_name source_directory - create a new project'
@@ -63,6 +73,23 @@ for arg in sys.argv:
         #read file config
         config.read('./projects/' + projectName + '/.projects.cfg')
         src = config.get(projectName, 'path')
+        print src
+        dirA = walkDir(src)
+        dirB = walkDir('./projects/' + projectName)
+        #filesNumber = countFiles(src)
+        print "Directories: " + str(len(dirA)-1)
+        filesNumA = 0
+        for a in dirA:
+            filesNumA += len(a[1])
+        print "Files: " + str(filesNumA)
+        print "-----"
+        print "Original:"
+        print "Directories: " + str(len(dirB)-1)
+        filesNumB = 0
+        for b in dirB:
+            filesNumB += len(b[1])
+        print "Files: " + str(filesNumB)
+
     if arg == 'list':
         #show list projects   
         for i in os.listdir('projects'):
