@@ -18,12 +18,10 @@ def copyAll(src, dst):
 
 def walkDir(path):
     dirS = []
-    for (path, dirs, files) in os.walk(path):
+    for (path, files) in os.walk(path):
         dirS.append([path, files])
-        #print dirs
-        #dir files
-        #raw_input()
     return dirS
+
 def countFiles(Barr):
     for files in os.walk(path):
         print files
@@ -60,6 +58,7 @@ for arg in sys.argv:
         #create file config
         config.add_section(projectName)
         config.set(projectName, 'path', os.path.abspath(path))
+        config.set(projectName, 'struct', walkDir(path))
         print './projects/' + projectName + '/.projects.cfg'
         with open('./projects/' + projectName + '/.projects.cfg', 'wb') as configfile:
             config.write(configfile)
@@ -94,6 +93,9 @@ for arg in sys.argv:
         #show list projects   
         for i in os.listdir('projects'):
         	print i
+    if arg == 'commit':
+        print "Changing..."
+        #write .history
     if arg == 'help':
         print 'Help'
         #show list projects   
