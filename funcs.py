@@ -9,6 +9,8 @@ import hashlib
 #
 #functions
 #  
+
+
 def copyAll(src, dst):
     try:
         shutil.copytree(src, dst)
@@ -44,8 +46,22 @@ def md5Checksum(filePath):
 def checkProject(pName):
     print "Checking................."
 
+#
+#compare 2 file
+#
+# def compFiles(file1, file2):
+#     msgTmp = ""
+#     if file2 not exist:
+#         msgTmp = " file2 not exist"
+#         return False
+#     if (md5Checksum(file1) = md5CheckSum(file2)):
+#         msgTmp = "Not change"
+#     else:
+#         msgTmp = "aaaa"
+#     return msgTmp
+
 def help():
-    print 'Bdetect v1.0 (c)2012 by S3K4 team - a very fast logon Joomla Cracker - support all version'
+    print 'Bdetect v1.0 (c)2012 by S3K4 team - a tool to detect change of files, directories'
     print 'Website: http://www.uns.vn'
     print 'Mail   : contact@uns.vn'
     print ''
