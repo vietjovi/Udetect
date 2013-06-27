@@ -1,6 +1,7 @@
 # find the difference between two texts
 # tested with Python24 vegaseat 6/2/2005
 import difflib
+import sys
 text1 = """The World's Shortest Books:
 Human Rights Advances in China
 "My Plan to Find the Real Killers" by OJ Simpson
@@ -34,6 +35,9 @@ text2Lines = open("test2.txt", "r").readlines()
 diffInstance = difflib.Differ()
 diffList = list(diffInstance.compare(text1Lines, text2Lines))
 print "Lines different in text1 from text2:"
+
+sys.stdout.writelines(diffList)
+sys.exit(1)
 for line in diffList:
 	if line[0] == '-':
 		print line,

@@ -101,14 +101,23 @@ def delProject(pName):
     shutil.rmtree('projects' + pathSep + pName)
     return True
 
+#
+#output into a file
+#
+def outputToFile(fileName):
+    return True
+
 def help():
-    print 'Bdetect v1.0 (c)2012 by S3K4 team - detect change of files, directories'
-    print 'Website: http://www.uns.vn'
-    print 'Mail   : contact@uns.vn'
-    print ''
-    print 'Options:'
-    print 'add project_name source_directory - create a new project'
-    print 'list - show all projects'
-    print 'check project_name - check a project'
-    print 'del project_name - delete a project'
+    #print "docs" + pathSep + "help.txt"
+    sys.stdout.writelines(open("docs" + pathSep + "help.txt", "r").read())
+        
+    # print 'Bdetect v1.0 (c)2012 by S3K4 team - detect change of files, directories'
+    # print 'Website: http://www.uns.vn'
+    # print 'Mail   : contact@uns.vn'
+    # print ''
+    # print 'Options:'
+    # print 'add project_name source_directory - create a new project'
+    # print 'list - show all projects'
+    # print 'check project_name - check a project'
+    # print 'del project_name - delete a project'
     sys.exit()
