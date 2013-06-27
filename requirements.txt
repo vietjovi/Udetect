@@ -1,4 +1,5 @@
 ConfigParser 
 shutil  
 errno  
-hashlib   
+hashlib  
+#robotframework-difflibrary   

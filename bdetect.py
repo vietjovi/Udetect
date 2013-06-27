@@ -40,7 +40,7 @@ for arg in sys.argv:
         try:
             if os.path.exists('projects/' + projectName):
                 print "Project name exists!: " + projectName
-                exit()
+                sys.exit(1)
             #copy source
             print "Copying..............................."
             shutil.copytree(dirSrc,'projects' + pathSep + projectName, symlinks=False, ignore=None)
@@ -53,8 +53,9 @@ for arg in sys.argv:
             config.add_section("files")
             config.add_section("directories")
             
-            config.set(projectName, 'path', os.path.abspath(dirSrc))
-            config.set("files", 'list', funcs.walkDir(dirSrc))
+            config.set(projectName, 'pathS', os.path.abspath(dirSrc))
+            config.set("files", 'listS', funcs.walkDir(dirSrc))
+            config.set("files", 'listP', funcs.walkDir('projects' + pathSep + projectName))
             with open('projects'+ pathSep + projectName + pathSep + '.bdetect'+ pathSep +'.config', 'wb') as configfile:
                 config.write(configfile)
             print "Create a project successful: " + projectName

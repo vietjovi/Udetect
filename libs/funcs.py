@@ -5,7 +5,12 @@ import shutil, errno
 import os
 import ConfigParser
 import hashlib
+import difflib
 
+#
+#varialble
+#
+diffC = difflib.Differ()
 
 if os.name == "posix":
     pathSep = "/"
@@ -23,15 +28,29 @@ def check(pName):
     config = ConfigParser.ConfigParser()
     config.readfp(open('projects' + pathSep + pName + pathSep + '.bdetect' + pathSep + '.config'))
     #config.read(open('projects' + pathSep + pName + pathSep + '.bdetect' + pathSep + '.config'))
-    srcDir = config.get(pName,'path')
+    srcDir = config.get(pName,'pathS')
     print srcDir
-    lstOrg = eval(config.get('files','list'))
+    lstOrg = eval(config.get('files','listS'))
+    lstSrc = eval(config.get('files','listS'))
     for i in lstOrg:
         fileTmp = i[0] + pathSep + i[1][0]
         if os.path.exists(fileTmp):
             print fileTmp
             if not (md5Checksum(fileTmp) == i[1][1]):
-                print "changed"
+                #print "changed"
+                # create a list of lines in text1
+                fileOrg =  fileTmp.replace(srcDir,"projects" + pathSep + pName)
+                text1Lines = open(fileOrg, "r").readlines()
+
+                # dito for text2
+                text2Lines = open(fileTmp, "r").readlines()
+                print
+                diffLst = list(diffC.compare(text1Lines, text2Lines))
+                print "Lines different in " + i[1][0] + ":"
+                for line in diffLst:
+                    if line[0] == '-':
+                        print line,
+                print
         else:
             print fileTmp + "---- Not found"  
 
@@ -50,8 +69,7 @@ def walkDir(pathVar):
     fileS = []
     for path, dirs, files in os.walk(pathVar):
         for f in files:
-            print path + pathSep + f
-            print path + pathSep + f + "------" + md5Checksum(path + pathSep + f)
+            print path + pathSep + f + " ------ " + md5Checksum(path + pathSep + f)
             dirS.append([path, [f, md5Checksum(path + pathSep + f)]])
     return dirS
 
