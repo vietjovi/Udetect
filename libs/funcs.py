@@ -23,19 +23,19 @@ else:
 #functions
 #  
 
-def check(pName):
-    print pName
+def check(pName, option = "diff"):
+    print "Project Name:\t\t" + pName
     config = ConfigParser.ConfigParser()
     config.readfp(open('projects' + pathSep + pName + pathSep + '.bdetect' + pathSep + '.config'))
     #config.read(open('projects' + pathSep + pName + pathSep + '.bdetect' + pathSep + '.config'))
     srcDir = config.get(pName,'pathS')
-    print srcDir
+    print "Path:        \t\t" + srcDir
+    print
     lstOrg = eval(config.get('files','listS'))
-    lstSrc = eval(config.get('files','listS'))
+    #lstSrc = eval(config.get('files','listS'))
     for i in lstOrg:
         fileTmp = i[0] + pathSep + i[1][0]
         if os.path.exists(fileTmp):
-            print fileTmp
             if not (md5Checksum(fileTmp) == i[1][1]):
                 #print "changed"
                 # create a list of lines in text1
@@ -46,13 +46,17 @@ def check(pName):
                 text2Lines = open(fileTmp, "r").readlines()
                 print
                 diffLst = list(diffC.compare(text1Lines, text2Lines))
-                print "Lines different in " + i[1][0] + ":"
-                for line in diffLst:
-                    if line[0] == '-':
-                        print line,
+                if option == "diff":                    
+                    print "Lines different in " + i[1][0] + ":"
+                    for line in diffLst:
+                        if line[0] == '-':
+                            print line,
+                elif option == "all":
+                    sys.stdout.writelines(diffLst)
+
                 print
         else:
-            print fileTmp + "---- Not found"  
+            print fileTmp + "\t\tNot found"  
 
     return True
 
@@ -104,20 +108,30 @@ def delProject(pName):
 #
 #output into a file
 #
-def outputToFile(fileName):
+def outputToFile(fileName, resultContent):
+    fileTmp = open(fileName, w)
+    fileTmp.close()
     return True
 
+#
+#write events to log file
+#
+def logEvents(logContent):
+
+    return True
+
+#
+#update
+#
+def updateProject(pName):
+    print "Project Name:\t\t" + pName
+    print "Updating................."
+    return True
+
+#
+#show help
+#
 def help():
-    #print "docs" + pathSep + "help.txt"
-    sys.stdout.writelines(open("docs" + pathSep + "help.txt", "r").read())
-        
-    # print 'Bdetect v1.0 (c)2012 by S3K4 team - detect change of files, directories'
-    # print 'Website: http://www.uns.vn'
-    # print 'Mail   : contact@uns.vn'
-    # print ''
-    # print 'Options:'
-    # print 'add project_name source_directory - create a new project'
-    # print 'list - show all projects'
-    # print 'check project_name - check a project'
-    # print 'del project_name - delete a project'
+    for line in open("docs" + pathSep + "help.txt", "r").readlines():
+        print line.replace("\n","")
     sys.exit()

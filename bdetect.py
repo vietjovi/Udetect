@@ -69,7 +69,10 @@ for arg in sys.argv:
     if arg == 'check':
         #check project
         projectName = sys.argv[count + 1]
-        funcs.check(projectName)
+        if '--all' in sys.argv:
+            funcs.check(projectName, "all")
+        else:
+            funcs.check(projectName)
     if arg == 'list':
         #show list projects   
         for i in os.listdir('projects'):
@@ -77,6 +80,10 @@ for arg in sys.argv:
     if arg == 'commit':
         print "Changing..."
         #write .history
+    if arg == 'update':
+        print 'updating...'
+        projectName = sys.argv[count + 1]
+        funcs.updateProject(projectName)
     if arg == 'help':
         funcs.help()
   

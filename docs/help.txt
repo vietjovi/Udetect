@@ -1,16 +1,22 @@
- Bdetect v1.0 (c)2012 by S3K4 team - detect change of files, directories
- Website: http://www.uns.vn
- Mail   : contact@uns.vn
- 
- Options:
- add project_name source_directory		Create a new project
- list 									Show all projects
- check project_name						Check a project
- 	--simple							Only show different
- 	--full								Comepare full
- del project_name						Delete a project
- help									Show help
- -o file_name							Write result into a file
+Bdetect v1.0 (c)2012 by S3K4 team - detect change of files, directories
+Website: http://www.uns.vn
+Mail   : contact@uns.vn
+	 
+Options:
+  add project_name source_directory					Create a new project
+  list 									Show all projects
+  check project_name							Check a project
+	--diff (default)						Only show different
+ 	--all								Comepare full
+ 	-o file_name							Write result into a file
+  del project_name							Delete a project
+  help									Show help  
+  update project_name					update change of files, directories
+   --all (default)						update all files, directories
+   --files path_to_file(directory)		only update specific files, directories
 
- Example:
+
+Example:
+  Add project
+  python bdetect.py add www /var/www/
  
