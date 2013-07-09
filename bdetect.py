@@ -83,7 +83,11 @@ for arg in sys.argv:
     if arg == 'update':
         print 'updating...'
         projectName = sys.argv[count + 1]
-        funcs.updateProject(projectName)
+        if '--all' in sys.argv:
+            funcs.updateProject(projectName)
+        else:
+            funcs.updateProject(projectName,'only')
+        
     if arg == 'help':
         funcs.help()
   
