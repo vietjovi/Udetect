@@ -90,5 +90,7 @@ for arg in sys.argv:
         
     if arg == 'help':
         funcs.help()
+    if arg == 'test':
+        funcs.test('/home/pentester/wordpress')
   
     count += 1

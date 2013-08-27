@@ -24,6 +24,7 @@ else:
 #  
 
 def check(pName, option = "diff"):
+    diffCount = 0 
     print "Project Name:\t\t" + pName
     config = ConfigParser.ConfigParser()
     config.readfp(open('projects' + pathSep + pName + pathSep + '.bdetect' + pathSep + '.config'))
@@ -33,6 +34,13 @@ def check(pName, option = "diff"):
     print
     lstOrg = eval(config.get('files','listS'))
     #lstSrc = eval(config.get('files','listS'))
+
+    for i in lstOrg:
+        print i[0]
+    raw_input()
+    for path, dirs, files in os.walk(srcDir):
+        print path
+
     for i in lstOrg:
         fileTmp = i[0] + pathSep + i[1][0]
         if os.path.exists(fileTmp):
@@ -53,11 +61,14 @@ def check(pName, option = "diff"):
                             print line,
                 elif option == "all":
                     sys.stdout.writelines(diffLst)
-
                 print
+                diffCount += 1
         else:
-            print fileTmp + "\t\tNot found"  
+            print fileTmp + "\t\tNot found"
+            diffCount += 1
 
+    print
+    print diffCount  
     return True
 
 def copyAll(src, dst):
@@ -128,6 +139,29 @@ def updateProject(pName):
     print "Updating................."
     return True
 
+#
+#list all files
+#
+def lstAllFile(pName):
+    lstTmp = []
+    return lstTmp
+
+#
+#list all dirs
+#
+def lstAllDir(pName):
+    lstTmp = []
+    return lstTmp
+
+
+def test(pathVar):
+    dirS = []
+    fileS = []
+    for path, dirs, files in os.walk(pathVar):
+        for f in files:
+            print path + pathSep + f
+            dirS.append([path])
+    return dirS
 #
 #show help
 #
