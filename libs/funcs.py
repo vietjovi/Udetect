@@ -23,21 +23,47 @@ else:
 #functions
 #  
 
+
+def createProject(pName, sDir, version = 1):
+    try:
+        if os.path.exists('projects/' + pName):
+            print "Project name exists!: " + pName
+            sys.exit(1)
+        config = ConfigParser.RawConfigParser()
+        #copy source
+        print "Copying..............................."
+        shutil.copytree(sDir,'projects' + pathSep + pName, symlinks=False, ignore=None)
+        #create directory for udetect
+        print "Finishing............................."
+        if not os.path.exists('projects' + pathSep + pName + pathSep + '.udetect'):
+            os.makedirs('projects' + pathSep + pName + pathSep + '.udetect')
+        #create file config
+        config.add_section(pName)
+        config.add_section("files")
+        config.add_section("directories")        
+        config.set(pName, 'pathS', os.path.abspath(sDir))
+        config.set(pName, 'version', version)
+        config.set("files", 'listS', walkDir(sDir))
+        config.set("files", 'listP', walkDir('projects' + pathSep + pName))
+        with open('projects'+ pathSep + pName + pathSep + '.udetect'+ pathSep +'.config', 'wb') as configfile:
+            config.write(configfile)
+        if(version == 1):
+            print "Create a project successful: " + pName
+    except:
+        delProject(pName)
+
 def check(pName, option = "diff"):
     diffCount = 0 
     print "Project Name:\t\t" + pName
     config = ConfigParser.ConfigParser()
-    config.readfp(open('projects' + pathSep + pName + pathSep + '.bdetect' + pathSep + '.config'))
-    #config.read(open('projects' + pathSep + pName + pathSep + '.bdetect' + pathSep + '.config'))
+    config.readfp(open('projects' + pathSep + pName + pathSep + '.udetect' + pathSep + '.config'))
     srcDir = config.get(pName,'pathS')
     print "Path:        \t\t" + srcDir
     print
     lstOrg = eval(config.get('files','listS'))
-    #lstSrc = eval(config.get('files','listS'))
-
     for i in lstOrg:
         print i[0]
-    raw_input()
+#    raw_input()
     for path, dirs, files in os.walk(srcDir):
         print path
 
@@ -45,7 +71,6 @@ def check(pName, option = "diff"):
         fileTmp = i[0] + pathSep + i[1][0]
         if os.path.exists(fileTmp):
             if not (md5Checksum(fileTmp) == i[1][1]):
-                #print "changed"
                 # create a list of lines in text1
                 fileOrg =  fileTmp.replace(srcDir,"projects" + pathSep + pName)
                 text1Lines = open(fileOrg, "r").readlines()
@@ -135,25 +160,24 @@ def logEvents(logContent):
 #update
 #
 def updateProject(pName):
-    print "Project Name:\t\t" + pName
-    print "Updating................."
+    config = ConfigParser.ConfigParser()
+    config.readfp(open('projects' + pathSep + pName + pathSep + '.udetect' + pathSep + '.config'))
+    srcDir = config.get(pName,'pathS')
+    version = config.get(pName,'version')
+
+    try:
+        print "Backing up..............."
+        os.rename(srcDir, srcDir_ + version)
+        print "Project Name:\t\t" + pName
+        print "Updating................."
+        createProject(pName, srcDir, version + 1)
+    except:
+        return False
     return True
 
 #
-#list all files
+#test
 #
-def lstAllFile(pName):
-    lstTmp = []
-    return lstTmp
-
-#
-#list all dirs
-#
-def lstAllDir(pName):
-    lstTmp = []
-    return lstTmp
-
-
 def test(pathVar):
     dirS = []
     fileS = []
@@ -162,6 +186,7 @@ def test(pathVar):
             print path + pathSep + f
             dirS.append([path])
     return dirS
+
 #
 #show help
 #
