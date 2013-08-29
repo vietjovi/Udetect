@@ -164,10 +164,10 @@ def updateProject(pName):
     config.readfp(open('projects' + pathSep + pName + pathSep + '.udetect' + pathSep + '.config'))
     srcDir = config.get(pName,'pathS')
     version = config.get(pName,'version')
-
+    print srcDir
     try:
         print "Backing up..............."
-        os.rename(srcDir, srcDir_ + version)
+        os.rename("projects" + pathSep + pName, srcDir_ + version)
         print "Project Name:\t\t" + pName
         print "Updating................."
         createProject(pName, srcDir, version + 1)
