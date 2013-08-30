@@ -59,13 +59,12 @@ def check(pName, option = "diff"):
     config.readfp(open('projects' + pathSep + pName + pathSep + '.udetect' + pathSep + '.config'))
     srcDir = config.get(pName,'pathS')
     print "Path:        \t\t" + srcDir
-    print
     lstOrg = eval(config.get('files','listS'))
-    for i in lstOrg:
-        print i[0]
+    # for i in lstOrg:
+    #     print i[0]
 #    raw_input()
-    for path, dirs, files in os.walk(srcDir):
-        print path
+    # for path, dirs, files in os.walk(srcDir):
+    #     print path
 
     for i in lstOrg:
         fileTmp = i[0] + pathSep + i[1][0]
@@ -163,16 +162,32 @@ def updateProject(pName):
     config = ConfigParser.ConfigParser()
     config.readfp(open('projects' + pathSep + pName + pathSep + '.udetect' + pathSep + '.config'))
     srcDir = config.get(pName,'pathS')
-    version = config.get(pName,'version')
+    version = int(config.get(pName,'version'))
+    print "version: " + str(version)
     print srcDir
     try:
         print "Backing up..............."
-        os.rename("projects" + pathSep + pName, srcDir_ + version)
+        os.rename("projects" + pathSep + pName, "projects" + pathSep +  pName + "_" + str(version))
         print "Project Name:\t\t" + pName
         print "Updating................."
-        createProject(pName, srcDir, version + 1)
+        createProject(pName, srcDir, str(version + 1))
     except:
+        print "Failed!"
         return False
+    print "Successful!"
+    return True
+
+
+#
+#show info project
+#
+def showInfoProject(pName):
+    config = ConfigParser.ConfigParser()
+    config.readfp(open('projects' + pathSep + pName + pathSep + '.udetect' + pathSep + '.config'))
+    srcDir = config.get(pName,'pathS')
+    version = int(config.get(pName,'version'))
+    print "source: " + srcDir
+    print "version: " + str(version)
     return True
 
 #
@@ -194,3 +209,7 @@ def help():
     for line in open("docs" + pathSep + "help.txt", "r").readlines():
         print line.replace("\n","")
     sys.exit()
+
+def cleanStr(strInput):
+    strTmp = strInput.replace("\\\\","\\")
+    return 

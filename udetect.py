@@ -45,10 +45,12 @@ for arg in sys.argv:
     if arg == 'list':        #show list projects   
         for i in os.listdir('projects'):
         	print i
+    if arg == 'info':
+        projectName = sys.argv[count + 1]
+        funcs.showInfoProject(projectName)
     if arg == 'update':
         projectName = sys.argv[count + 1]
-        funcs.updateProject(projectName)
-     
+        funcs.updateProject(projectName)     
     if arg == 'help':
         funcs.help()
     if arg == 'test':
