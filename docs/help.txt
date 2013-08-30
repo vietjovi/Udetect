@@ -1,9 +1,9 @@
-Bdetect v1.0 (c)2012 by S3K4 team - detect change of files, directories
+Udetect v1.0 (c)2012 by S3K4 team - detect change of files, directories
 Website: http://www.uns.vn
-Mail   : contact@uns.vn
+Mail   : vietnguyen@uns.vn
 	 
 Options:
-  add project_name source_directory					Create a new project
+  create project_name source_directory					Create a new project
   list 									Show all projects
   check project_name							Check a project
 	--diff (default)						Only show different
@@ -14,9 +14,10 @@ Options:
   update project_name					update change of files, directories
    --all (default)						update all files, directories
    --files path_to_file(directory)		only update specific files, directories
+  restore project_name                    restore
 
 
 Example:
-  Add project
-  python bdetect.py add www /var/www/
+  backup www directory:
+  python udetect.py create www /var/www/
  

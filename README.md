@@ -6,12 +6,16 @@ INSTALL
 =======  
 1. Installl Python  
 2. Install Pip or Easy Install (package manager for python  
-3. Run command: "pip install -r requirements.txt"  
+3. Run command: "pip install -r requirements.txt"
+4. python udetect.py
+5. Enjoy it!  
 
 HOW TO USE
 ==========
-python udetect add projectname /path/project/  
-python udetect check --all projectname
+python udetect.py create projectname /path/project/  
+python udetect.py check --all projectname  
+python udetect.py update projectname  
+python udetect.py restore projectname  
 
-Website: http://uns.vn  
+Homepage: http://uns.vn 
 Email: vietnguyen@uns.vn

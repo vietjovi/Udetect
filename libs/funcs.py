@@ -167,7 +167,7 @@ def updateProject(pName):
     print srcDir
     try:
         print "Backing up..............."
-        os.rename("projects" + pathSep + pName, "projects" + pathSep +  pName + "_" + str(version))
+        os.rename("projects" + pathSep + pName, "revisions" + pathSep +  pName + "_" + str(version))
         print "Project Name:\t\t" + pName
         print "Updating................."
         createProject(pName, srcDir, str(version + 1))
@@ -177,6 +177,15 @@ def updateProject(pName):
     print "Successful!"
     return True
 
+#
+#restore
+#
+def restoreProject(pName, version=0):
+    if (version == 0):
+        print "restoring..."
+    else:
+        print "restoring..."
+    return True
 
 #
 #show info project

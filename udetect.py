@@ -50,10 +50,10 @@ for arg in sys.argv:
         funcs.showInfoProject(projectName)
     if arg == 'update':
         projectName = sys.argv[count + 1]
-        funcs.updateProject(projectName)     
+        funcs.updateProject(projectName)
+    if arg == 'restore':
+        projectName = sys.argv[count + 1]
+        funcs.showInfoProject(projectName)     
     if arg == 'help':
         funcs.help()
-    if arg == 'test':
-        funcs.test('/home/pentester/wordpress')
-  
     count += 1
