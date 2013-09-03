@@ -6,6 +6,7 @@ import os
 import ConfigParser
 import hashlib
 import difflib
+import logging
 
 #
 #varialble
@@ -49,10 +50,19 @@ def createProject(pName, sDir, version = 1):
             config.write(configfile)
         if(version == 1):
             print "Create a project successful: " + pName
+        open('projects'+ pathSep + pName + pathSep + '.udetect' + pathSep + '.change.log' , 'a').close()
     except:
         delProject(pName)
 
 def check(pName, option = "diff"):
+    msg = ''
+    fName = 'projects' + pathSep + pName + pathSep + '.udetect/.change.log'
+    print fName
+    logging.basicConfig(filename=fName, level=logging.DEBUG, format='%(asctime)s %(message)s')
+    # logging.debug('This message should go to the log file')
+    # logging.info('So should this')
+    # logging.warning('And this, too')
+
     diffCount = 0 
     print "Project Name:\t\t" + pName
     config = ConfigParser.ConfigParser()
@@ -76,19 +86,24 @@ def check(pName, option = "diff"):
 
                 # dito for text2
                 text2Lines = open(fileTmp, "r").readlines()
-                print
                 diffLst = list(diffC.compare(text1Lines, text2Lines))
-                if option == "diff":                    
-                    print "Lines different in " + i[1][0] + ":"
+                if option == "diff":
+                    msg = "Lines different in " + i[1][0] + ":"                    
+                    print msg
+                    logging.warning(msg)
                     for line in diffLst:
                         if line[0] == '-':
-                            print line,
+                            print line
+                            logging.warning(line)
                 elif option == "all":
                     sys.stdout.writelines(diffLst)
+                    logging.warning(diffLst)
                 print
                 diffCount += 1
         else:
-            print fileTmp + "\t\tNot found"
+            msg = fileTmp + "\t\tNot found"
+            print msg
+            logging.warning(msg)
             diffCount += 1
 
     print
@@ -197,6 +212,9 @@ def showInfoProject(pName):
     version = int(config.get(pName,'version'))
     print "source: " + srcDir
     print "version: " + str(version)
+    f = open('projects' + pathSep + pName + pathSep + '.udetect' + pathSep + '.change.log', 'r')
+    print f.read()
+    f.close()
     return True
 
 #
@@ -221,4 +239,16 @@ def help():
 
 def cleanStr(strInput):
     strTmp = strInput.replace("\\\\","\\")
-    return 
+    return
+
+#
+#update Udetect
+#
+def update():
+    return True
+#
+#start
+# 
+def start(pName):
+
+    return true

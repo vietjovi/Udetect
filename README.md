@@ -1,11 +1,11 @@
 Udetect
 =======
-A tool to scan and detect change of file, directory.
+A tool to detect change of files, directories.
 
 INSTALL
 =======  
 1. Installl Python  
-2. Install Pip or Easy Install (package manager for python  
+2. Install Pip or Easy Install (package manager for python. Ex install pip on Ubuntu: sudo apt-get install python-pip)  
 3. Run command: "pip install -r requirements.txt"
 4. python udetect.py
 5. Enjoy it!  

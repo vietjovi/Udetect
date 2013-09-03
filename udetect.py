@@ -49,11 +49,12 @@ for arg in sys.argv:
         projectName = sys.argv[count + 1]
         funcs.showInfoProject(projectName)
     if arg == 'update':
-        projectName = sys.argv[count + 1]
-        funcs.updateProject(projectName)
+        funcs.update()
     if arg == 'restore':
         projectName = sys.argv[count + 1]
         funcs.showInfoProject(projectName)     
     if arg == 'help':
         funcs.help()
+    if arg == 'start':
+        funcs.start()
     count += 1
