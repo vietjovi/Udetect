@@ -46,8 +46,19 @@ def createProject(pName, sDir, version = 1):
         config.set(pName, 'version', version)
         config.set("files", 'listS', walkDir(sDir))
         config.set("files", 'listP', walkDir('projects' + pathSep + pName))
-        with open('projects'+ pathSep + pName + pathSep + '.udetect'+ pathSep +'.config', 'wb') as configfile:
+        with open('projects'+ pathSep + pName + pathSep + '.udetect'+ pathSep +'.info', 'wb') as configfile:
             config.write(configfile)
+
+        config = ConfigParser.RawConfigParser()
+        config.readfp(open('udetect.conf'))
+        if(not config.has_section(pName)):
+            config.add_section(pName)
+            config.set(pName, 'ext', "*")
+            config.set(pName, 'email', "no-email@uns.mail")
+            config.set(pName, 'type', "normal")
+            with open('udetect.conf', 'wb') as configfile:
+                config.write(configfile)
+
         if(version == 1):
             print "Create a project successful: " + pName
         open('projects'+ pathSep + pName + pathSep + '.udetect' + pathSep + '.change.log' , 'a').close()
@@ -66,7 +77,7 @@ def check(pName, option = "diff"):
     diffCount = 0 
     print "Project Name:\t\t" + pName
     config = ConfigParser.ConfigParser()
-    config.readfp(open('projects' + pathSep + pName + pathSep + '.udetect' + pathSep + '.config'))
+    config.readfp(open('projects' + pathSep + pName + pathSep + '.udetect' + pathSep + '.info'))
     srcDir = config.get(pName,'pathS')
     print "Path:        \t\t" + srcDir
     lstOrg = eval(config.get('files','listS'))
@@ -153,6 +164,11 @@ def delProject(pName):
         print "Project not exists!: " + pName
         exit()
     shutil.rmtree('projects' + pathSep + pName)
+    config = ConfigParser.RawConfigParser()
+    config.readfp(open('udetect.conf'))
+    config.remove_section(pName)
+    with open('udetect.conf', 'wb') as configfile:
+        config.write(configfile)
     return True
 
 #
@@ -175,7 +191,7 @@ def logEvents(logContent):
 #
 def updateProject(pName):
     config = ConfigParser.ConfigParser()
-    config.readfp(open('projects' + pathSep + pName + pathSep + '.udetect' + pathSep + '.config'))
+    config.readfp(open('projects' + pathSep + pName + pathSep + '.udetect' + pathSep + '.info'))
     srcDir = config.get(pName,'pathS')
     version = int(config.get(pName,'version'))
     print "version: " + str(version)
@@ -207,7 +223,7 @@ def restoreProject(pName, version=0):
 #
 def showInfoProject(pName):
     config = ConfigParser.ConfigParser()
-    config.readfp(open('projects' + pathSep + pName + pathSep + '.udetect' + pathSep + '.config'))
+    config.readfp(open('projects' + pathSep + pName + pathSep + '.udetect' + pathSep + '.info'))
     srcDir = config.get(pName,'pathS')
     version = int(config.get(pName,'version'))
     print "source: " + srcDir
