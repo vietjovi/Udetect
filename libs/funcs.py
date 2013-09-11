@@ -1,5 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+
 import sys
 import shutil, errno
 import os
@@ -7,6 +8,8 @@ import ConfigParser
 import hashlib
 import difflib
 import logging
+import smtplib
+from email.mime.text import MIMEText
 
 #
 #varialble
@@ -56,7 +59,7 @@ def createProject(pName, sDir, version = 1):
             config.set(pName, 'enable', "1")
             config.set(pName, 'ext', "*")
             config.set(pName, 'email', "no-email@uns.mail")
-            config.set(pName, 'type', "normal")
+            config.set(pName, 'type', "fast")
             with open('udetect.conf', 'wb') as configfile:
                 config.write(configfile)
 
@@ -274,8 +277,71 @@ def update():
 #check project
 #
 def checkProject(pName, type="fast"):
-    
+    msg = ''
+    fName = 'projects' + pathSep + pName + pathSep + '.udetect/.change.log'
+    print fName
+    logging.basicConfig(filename=fName, level=logging.DEBUG, format='%(asctime)s %(message)s')
+    # logging.debug('minion')
+    # logging.info('banana')
+    # logging.warning(potato')
+
+    diffCount = 0 
+    print "Project Name:\t\t" + pName
+    config = ConfigParser.ConfigParser()
+    config.readfp(open('projects' + pathSep + pName + pathSep + '.udetect' + pathSep + '.info'))
+    srcDir = config.get(pName,'pathS')
+    print "Path:        \t\t" + srcDir
+    lstOrg = eval(config.get('files','listS'))
+
+    for i in lstOrg:
+        fileTmp = i[0] + pathSep + i[1][0]
+        if os.path.exists(fileTmp):
+            if (md5Checksum(fileTmp) != i[1][1]):
+                if type == "fast":
+                    msg = "Lines different in " + i[1][0] + ":"                    
+                    print msg
+                    logging.warning(msg)
+                    
+                elif type == "all":
+                    # create a list of lines in text1
+                    fileOrg =  fileTmp.replace(srcDir,"projects" + pathSep + pName)
+                    text1Lines = open(fileOrg, "r").readlines()
+
+                    # dito for text2
+                    text2Lines = open(fileTmp, "r").readlines()
+                    diffLst = list(diffC.compare(text1Lines, text2Lines))
+                    for line in diffLst:
+                        if line[0] == '-':
+                            print line
+                            logging.warning(line)
+                    sys.stdout.writelines(diffLst)
+                    logging.warning(diffLst)
+                diffCount += 1
+        else:
+            msg = fileTmp + "\t\tNot found"
+            #print msg
+            logging.warning(msg)
+            diffCount += 1    
+    return msg
+
+#
+#send mail
+#
+def sendMail(email, subject, msg=""):
+    config = ConfigParser.RawConfigParser()
+    config.readfp(open('udetect.conf'))
+    mailFrm = config.get('main_config','email')
+    smtpServer = config.get('main_config', 'smtp_server')
+    smtpPort = config.get('main_config', 'smtp_port')
+    msgTmp = MIMEText(msg)
+    msgTmp['Subject'] = subject
+    msgTmp['From'] = mailFrm
+    msgTmp['To'] = email
+    s = smtplib.SMTP(smtpServer, smtpPort)
+    s.sendmail(mailFrm, email, msgTmp.as_string())
+    s.quit()
     return True
+
 #
 #start
 # 
@@ -284,7 +350,9 @@ def start():
     config.readfp(open('udetect.conf'))
     for pName in config.sections():
         if(pName != 'main_config'):
-            print pName
-            if(config.get(pName,'enable') == 1):
-                checkProject(pName, config.get(pName, "type"))
+            #print pName
+            if(config.get(pName,'enable') == '1'):
+                result = checkProject(pName, config.get(pName, "type"))
+                sendMail(config.get(pName,'email'), pName + 'test', result)
+
     return True

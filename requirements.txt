@@ -2,5 +2,6 @@ ConfigParser
 shutil  
 errno  
 hashlib
-logging  
+logging
+smtplib  
 #robotframework-difflibrary   
