@@ -1,6 +1,0 @@
-2013-09-03 15:12:49,036 /home/pentester/atom/tmp.py		Not found
-2013-09-03 15:12:50,249 /home/pentester/atom/tmp.py		Not found
-2013-09-03 15:12:52,575 /home/pentester/atom/tmp.py		Not found
-2013-09-03 15:54:17,971 /home/pentester/atom/tmp.py		Not found
-2013-09-03 15:55:10,843 /home/pentester/atom/tmp.py		Not found
-2013-09-03 15:55:10,894 ['  #!/usr/bin/python\n', '  # -*- coding: utf-8 -*-\n', '  \n', '  import feedparser\n', '  import sys\n', '  import glob\n', '  \n', '  myPath\t = sys.argv[1]\n', '  lstFile  = glob.glob(myPath + "/*.rss")\n', '- \n', '+ print "test"\n', '  for f in lstFile:\t\n', '  \tfeed = feedparser.parse(f)\n', '- \tprint f + "----" + str(len(feed["items"]))', '+ \t#print f + "----" + str(len(feed["items"]))\n', '? \t+                                          +\n']

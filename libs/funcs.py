@@ -53,6 +53,7 @@ def createProject(pName, sDir, version = 1):
         config.readfp(open('udetect.conf'))
         if(not config.has_section(pName)):
             config.add_section(pName)
+            config.set(pName, 'enable', "1")
             config.set(pName, 'ext', "*")
             config.set(pName, 'email', "no-email@uns.mail")
             config.set(pName, 'type', "normal")
@@ -64,8 +65,14 @@ def createProject(pName, sDir, version = 1):
         open('projects'+ pathSep + pName + pathSep + '.udetect' + pathSep + '.change.log' , 'a').close()
     except:
         delProject(pName)
+        return False
 
-def check(pName, option = "diff"):
+    return True
+
+#
+#check function (old version ^^)
+#
+def check_old(pName, option = "diff"):
     msg = ''
     fName = 'projects' + pathSep + pName + pathSep + '.udetect/.change.log'
     print fName
@@ -262,9 +269,22 @@ def cleanStr(strInput):
 #
 def update():
     return True
+
+#
+#check project
+#
+def checkProject(pName, type="fast"):
+    
+    return True
 #
 #start
 # 
-def start(pName):
-
-    return true
+def start():
+    config = ConfigParser.RawConfigParser()
+    config.readfp(open('udetect.conf'))
+    for pName in config.sections():
+        if(pName != 'main_config'):
+            print pName
+            if(config.get(pName,'enable') == 1):
+                checkProject(pName, config.get(pName, "type"))
+    return True
