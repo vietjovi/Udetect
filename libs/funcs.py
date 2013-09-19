@@ -9,7 +9,7 @@ import hashlib
 import difflib
 import logging
 import smtplib
-from email.mime.text import MIMEText
+
 
 #
 #varialble
@@ -333,13 +333,32 @@ def sendMail(email, subject, msg=""):
     mailFrm = config.get('main_config','email')
     smtpServer = config.get('main_config', 'smtp_server')
     smtpPort = config.get('main_config', 'smtp_port')
-    msgTmp = MIMEText(msg)
-    msgTmp['Subject'] = subject
-    msgTmp['From'] = mailFrm
-    msgTmp['To'] = email
-    s = smtplib.SMTP(smtpServer, smtpPort)
-    s.sendmail(mailFrm, email, msgTmp.as_string())
-    s.quit()
+    smtpPass = config.get('main_config', 'smtp_pass')
+
+    subject = 'Gmail SMTP Test'
+    body = 'blah blah blah'
+     
+    "Sends an e-mail to the specified recipient."
+     
+    body = "" + msg + ""
+     
+    headers = ["From: " + mailFrm,
+               "Subject: " + subject,
+               "To: " + email,
+               "MIME-Version: 1.0",
+               "Content-Type: text/html"]
+    headers = "\r\n".join(headers)
+     
+    session = smtplib.SMTP(smtpServer, smtpPort)
+     
+    session.ehlo()
+    session.starttls()
+    session.ehlo
+    session.login(mailFrm, smtpPass)
+     
+    session.sendmail(mailFrm, email, headers + "\r\n\r\n" + body)
+    session.quit()
+
     return True
 
 #
@@ -353,6 +372,10 @@ def start():
             #print pName
             if(config.get(pName,'enable') == '1'):
                 result = checkProject(pName, config.get(pName, "type"))
-                sendMail(config.get(pName,'email'), pName + 'test', result)
-
+                try:
+                    sendMail(config.get(pName,'email'), pName + 'test', result)
+                    pass
+                except Exception, e:
+                    print "Can not send mail!"
+                    print "Please check setting, connection, v.v."
     return True
