@@ -265,7 +265,8 @@ def help():
 
 def cleanStr(strInput):
     strTmp = strInput.replace("\\\\","\\")
-    return
+    strTmp = strInput.replace("//","/")
+    return strTmp
 
 #
 #update Udetect
@@ -278,6 +279,7 @@ def update():
 #
 def checkProject(pName, type="fast"):
     msg = ''
+    msgTmp = ''
     fName = 'projects' + pathSep + pName + pathSep + '.udetect/.change.log'
     print fName
     logging.basicConfig(filename=fName, level=logging.DEBUG, format='%(asctime)s %(message)s')
@@ -298,9 +300,9 @@ def checkProject(pName, type="fast"):
         if os.path.exists(fileTmp):
             if (md5Checksum(fileTmp) != i[1][1]):
                 if type == "fast":
-                    msg = "Lines different in " + i[1][0] + ":"                    
-                    print msg
-                    logging.warning(msg)
+                    msgTmp = "Lines different in " + i[1][0] + ":"                    
+                    logging.warning(msgTmp)
+                    msg += msgTmp + "\n"
                     
                 elif type == "all":
                     # create a list of lines in text1
@@ -318,9 +320,9 @@ def checkProject(pName, type="fast"):
                     logging.warning(diffLst)
                 diffCount += 1
         else:
-            msg = fileTmp + "\t\tNot found"
-            #print msg
-            logging.warning(msg)
+            msgTmp = cleanStr(fileTmp + "\tNot found")
+            msg += msgTmp + "\n"
+            logging.warning(msgTmp)
             diffCount += 1    
     return msg
 
@@ -371,11 +373,13 @@ def start():
         if(pName != 'main_config'):
             #print pName
             if(config.get(pName,'enable') == '1'):
-                result = checkProject(pName, config.get(pName, "type"))
+                result = '<pre>' + checkProject(pName, config.get(pName, "type")) + '</pre>'
                 try:
-                    sendMail(config.get(pName,'email'), pName + 'test', result)
+                    sendMail(config.get(pName,'email'), '[UDETECT] report for ' + pName, result)
+                    print result
                     pass
                 except Exception, e:
                     print "Can not send mail!"
                     print "Please check setting, connection, v.v."
+                    pass
     return True
