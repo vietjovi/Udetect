@@ -58,7 +58,7 @@ def createProject(pName, sDir, version = 1):
             config.add_section(pName)
             config.set(pName, 'enable', "1")
             config.set(pName, 'ext', "*")
-            config.set(pName, 'email', "no-email@uns.mail")
+            config.set(pName, 'email', "default")
             config.set(pName, 'type', "fast")
             with open('udetect.conf', 'wb') as configfile:
                 config.write(configfile)
@@ -70,65 +70,6 @@ def createProject(pName, sDir, version = 1):
         delProject(pName)
         return False
 
-    return True
-
-#
-#check function (old version ^^)
-#
-def check_old(pName, option = "diff"):
-    msg = ''
-    fName = 'projects' + pathSep + pName + pathSep + '.udetect/.change.log'
-    print fName
-    logging.basicConfig(filename=fName, level=logging.DEBUG, format='%(asctime)s %(message)s')
-    # logging.debug('This message should go to the log file')
-    # logging.info('So should this')
-    # logging.warning('And this, too')
-
-    diffCount = 0 
-    print "Project Name:\t\t" + pName
-    config = ConfigParser.ConfigParser()
-    config.readfp(open('projects' + pathSep + pName + pathSep + '.udetect' + pathSep + '.info'))
-    srcDir = config.get(pName,'pathS')
-    print "Path:        \t\t" + srcDir
-    lstOrg = eval(config.get('files','listS'))
-    # for i in lstOrg:
-    #     print i[0]
-#    raw_input()
-    # for path, dirs, files in os.walk(srcDir):
-    #     print path
-
-    for i in lstOrg:
-        fileTmp = i[0] + pathSep + i[1][0]
-        if os.path.exists(fileTmp):
-            if not (md5Checksum(fileTmp) == i[1][1]):
-                # create a list of lines in text1
-                fileOrg =  fileTmp.replace(srcDir,"projects" + pathSep + pName)
-                text1Lines = open(fileOrg, "r").readlines()
-
-                # dito for text2
-                text2Lines = open(fileTmp, "r").readlines()
-                diffLst = list(diffC.compare(text1Lines, text2Lines))
-                if option == "diff":
-                    msg = "Lines different in " + i[1][0] + ":"                    
-                    print msg
-                    logging.warning(msg)
-                    for line in diffLst:
-                        if line[0] == '-':
-                            print line
-                            logging.warning(line)
-                elif option == "all":
-                    sys.stdout.writelines(diffLst)
-                    logging.warning(diffLst)
-                print
-                diffCount += 1
-        else:
-            msg = fileTmp + "\t\tNot found"
-            print msg
-            logging.warning(msg)
-            diffCount += 1
-
-    print
-    print diffCount  
     return True
 
 def copyAll(src, dst):
@@ -148,6 +89,18 @@ def walkDir(pathVar):
             dirS.append([cleanStr(path), [f, md5Checksum(path + pathSep + f)]])
     return dirS
 
+def getListFiles(pathVar):
+    fileS = []
+    #print pathVar
+    for path, dirs, files in os.walk(pathVar):
+        for f in files:
+            fileS.append(cleanStr(path + pathSep + f))
+    return fileS
+
+def getListDirs(pathVar):
+    dirS = []
+    return dirS 
+
 def countFiles(Barr):
     for files in os.walk(path):
         print files
@@ -162,9 +115,6 @@ def md5Checksum(filePath):
                 break
             m.update(data)
         return m.hexdigest()
-
-def checkProject(pName):
-    print "Checking................."
 
 #
 #delete project
@@ -281,7 +231,6 @@ def checkProject(pName, type="fast"):
     msg = ''
     msgTmp = ''
     fName = 'projects' + pathSep + pName + pathSep + '.udetect/.change.log'
-    print fName
     logging.basicConfig(filename=fName, level=logging.DEBUG, format='%(asctime)s %(message)s')
     # logging.debug('minion')
     # logging.info('banana')
@@ -292,11 +241,13 @@ def checkProject(pName, type="fast"):
     config = ConfigParser.ConfigParser()
     config.readfp(open('projects' + pathSep + pName + pathSep + '.udetect' + pathSep + '.info'))
     srcDir = config.get(pName,'pathS')
+    listFilesOld = []
     print "Path:        \t\t" + srcDir
     lstOrg = eval(config.get('files','listS'))
 
     for i in lstOrg:
         fileTmp = i[0] + pathSep + i[1][0]
+        listFilesOld.append(cleanStr(fileTmp))
         if os.path.exists(fileTmp):
             if (md5Checksum(fileTmp) != i[1][1]):
                 if type == "fast":
@@ -324,6 +275,16 @@ def checkProject(pName, type="fast"):
             msg += msgTmp + "\n"
             logging.warning(msgTmp)
             diffCount += 1    
+    #find new files
+    listFilesNew = getListFiles(srcDir)
+    for fileTmp in listFilesNew:
+        if fileTmp not in listFilesOld:
+            msgTmp = cleanStr(fileTmp + "\t ---- New")
+            msg += msgTmp + "\n"
+            logging.warning(msgTmp)
+            diffCount += 1
+    if diffCount < 1:
+        return False
     return msg
 
 #
@@ -373,13 +334,19 @@ def start():
         if(pName != 'main_config'):
             #print pName
             if(config.get(pName,'enable') == '1'):
-                result = '<pre>' + checkProject(pName, config.get(pName, "type")) + '</pre>'
-                try:
-                    sendMail(config.get(pName,'email'), '[UDETECT] report for ' + pName, result)
-                    print result
-                    pass
-                except Exception, e:
-                    print "Can not send mail!"
-                    print "Please check setting, connection, v.v."
-                    pass
+                result = checkProject(pName, config.get(pName, "type"))
+                
+                if result:                    
+                    try:
+                        print result
+                        sendMail(config.get(pName,'email'), '[UDETECT] report for ' + pName, '<pre>' + result + '</pre>')
+                        #print result
+                        pass
+                    except Exception, e:
+                        print "Can not send mail!"
+                        print "Please check setting, connection, v.v."
+                        pass
+                else:
+                    print "no change"
+    print "done"
     return True
