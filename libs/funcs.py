@@ -32,7 +32,7 @@ def createProject(pName, sDir, version = 1):
     try:
         if os.path.exists('projects/' + pName):
             print "Project name exists!: " + pName
-            sys.exit(1)
+            return False
         config = ConfigParser.RawConfigParser()
         #copy source
         print "Copying..............................."
@@ -144,8 +144,8 @@ def walkDir(pathVar):
     fileS = []
     for path, dirs, files in os.walk(pathVar):
         for f in files:
-            print path + pathSep + f + " ------ " + md5Checksum(path + pathSep + f)
-            dirS.append([path, [f, md5Checksum(path + pathSep + f)]])
+            print cleanStr(path + pathSep + f + " ------ " + md5Checksum(path + pathSep + f))
+            dirS.append([cleanStr(path), [f, md5Checksum(path + pathSep + f)]])
     return dirS
 
 def countFiles(Barr):
