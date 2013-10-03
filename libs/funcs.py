@@ -57,7 +57,8 @@ def createProject(pName, sDir, version = 1):
         if(not config.has_section(pName)):
             config.add_section(pName)
             config.set(pName, 'enable', "1")
-            config.set(pName, 'ext', "*")
+            config.set(pName, 'white_ext', "*")
+            config.set(pName, 'white_dir', "*")
             config.set(pName, 'email', "default")
             config.set(pName, 'type', "fast")
             with open('udetect.conf', 'wb') as configfile:
@@ -227,7 +228,7 @@ def update():
 #
 #check project
 #
-def checkProject(pName, type="fast"):
+def checkProject(pName, type="fast", white_dir = '*', white_ext = '*'):
     msg = ''
     msgTmp = ''
     fName = 'projects' + pathSep + pName + pathSep + '.udetect/.change.log'
@@ -235,7 +236,11 @@ def checkProject(pName, type="fast"):
     # logging.debug('minion')
     # logging.info('banana')
     # logging.warning(potato')
-
+    if white_dir == '*':
+        white_dir = None
+    else:
+        white_dir = white_dir.split(' ')
+        print white_dir
     diffCount = 0 
     print "Project Name:\t\t" + pName
     config = ConfigParser.ConfigParser()
@@ -330,16 +335,19 @@ def sendMail(email, subject, msg=""):
 def start():
     config = ConfigParser.RawConfigParser()
     config.readfp(open('udetect.conf'))
+    defaultEmail = config.get('main_config','email_default')
     for pName in config.sections():
         if(pName != 'main_config'):
             #print pName
             if(config.get(pName,'enable') == '1'):
-                result = checkProject(pName, config.get(pName, "type"))
-                
+                result = checkProject(pName, config.get(pName, "type"), config.get(pName, "white_dir"), config.get(pName, "white_ext"))
                 if result:                    
                     try:
                         print result
-                        sendMail(config.get(pName,'email'), '[UDETECT] report for ' + pName, '<pre>' + result + '</pre>')
+                        email = config.get(pName,'email')
+                        if email == 'default':
+                            email = defaultEmail
+                        sendMail(email, '[UDETECT] report for ' + pName, '<pre>' + result + '</pre>')
                         #print result
                         pass
                     except Exception, e:
