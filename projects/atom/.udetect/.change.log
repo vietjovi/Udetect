@@ -67,3 +67,27 @@
 2013-10-04 00:17:07,192 /home/pentester/atom/test/the-loai-5.rss	 ---- New
 2013-10-04 00:17:07,192 /home/pentester/atom/test/the-loai-6.rss	 ---- New
 2013-10-04 00:17:07,192 /home/pentester/atom/test/test.txt	 ---- New
+2013-10-04 22:57:32,327 /home/pentester/atom/test/test.txt	 ---- New
+2013-10-04 23:23:33,378 /home/pentester/atom/test/test.txt	 ---- New
+2013-10-04 23:25:07,670 /home/pentester/atom/test/test.txt	 ---- New
+2013-10-04 23:25:33,240 /home/pentester/atom/test/test.txt	 ---- New
+2013-10-04 23:26:09,445 /home/pentester/atom/test/test.txt	 ---- New
+2013-10-04 23:42:37,702 /home/pentester/atom/test/test.txt	 ---- New
+2013-10-04 23:57:57,021 /home/pentester/atom/test/test.txt	 ---- New
+2013-10-04 23:58:12,381 /home/pentester/atom/test/test.txt	 ---- New
+2013-10-04 23:59:05,582 Lines different in tmp.py:
+2013-10-04 23:59:24,183 Lines different in tmp.py:
+2013-10-04 23:59:24,195 /home/pentester/atom/test/test.txt	 ---- New
+2013-10-05 00:30:50,017 Lines different in tmp.py:
+2013-10-05 00:31:19,379 Lines different in tmp.py:
+2013-10-05 00:32:01,142 Lines different in tmp.py:
+2013-10-05 00:32:01,148 Lines different in countNews.py:
+2013-10-05 00:32:18,739 Lines different in tmp.py:
+2013-10-05 00:32:18,745 Lines different in countNews.py:
+2013-10-05 00:32:32,112 Lines different in tmp.py:
+2013-10-05 00:32:32,118 Lines different in countNews.py:
+2013-10-05 00:32:32,118 /home/pentester/atom/test2.txt	 ---- New
+2013-10-05 00:32:51,935 Lines different in tmp.py:
+2013-10-05 00:32:51,941 Lines different in countNews.py:
+2013-10-05 00:32:51,948 /home/pentester/atom/test2.txt	 ---- New
+2013-10-05 00:32:51,948 /home/pentester/atom/test/test.txt	 ---- New

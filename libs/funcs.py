@@ -226,6 +226,18 @@ def update():
     return True
 
 #
+#get extension, directory, file name
+#
+def getExtension(fileName):
+    return os.path.splitext(fileName)[1]
+
+def getDirectory(fileName):
+    return os.path.split(fileName)[0]
+
+def getFileName(fileName):
+    return os.path.split(fileName)[1]
+
+#
 #check project
 #
 def checkProject(pName, type="fast", white_dir = '*', white_ext = '*'):
@@ -236,11 +248,9 @@ def checkProject(pName, type="fast", white_dir = '*', white_ext = '*'):
     # logging.debug('minion')
     # logging.info('banana')
     # logging.warning(potato')
-    if white_dir == '*':
-        white_dir = None
-    else:
-        white_dir = white_dir.split(' ')
-        print white_dir
+    white_dir = white_dir.split(' ')
+    white_ext = white_ext.split(' ')
+
     diffCount = 0 
     print "Project Name:\t\t" + pName
     config = ConfigParser.ConfigParser()
@@ -252,42 +262,44 @@ def checkProject(pName, type="fast", white_dir = '*', white_ext = '*'):
 
     for i in lstOrg:
         fileTmp = i[0] + pathSep + i[1][0]
-        listFilesOld.append(cleanStr(fileTmp))
-        if os.path.exists(fileTmp):
-            if (md5Checksum(fileTmp) != i[1][1]):
-                if type == "fast":
-                    msgTmp = "Lines different in " + i[1][0] + ":"                    
-                    logging.warning(msgTmp)
-                    msg += msgTmp + "\n"
-                    
-                elif type == "all":
-                    # create a list of lines in text1
-                    fileOrg =  fileTmp.replace(srcDir,"projects" + pathSep + pName)
-                    text1Lines = open(fileOrg, "r").readlines()
+        if checkWhiteList(white_dir, white_ext, fileTmp):
+            listFilesOld.append(cleanStr(fileTmp))
+            if os.path.exists(fileTmp):
+                if (md5Checksum(fileTmp) != i[1][1]):
+                    if type == "fast":
+                        msgTmp = "Lines different in " + i[1][0] + ":"                    
+                        logging.warning(msgTmp)
+                        msg += msgTmp + "\n"
+                        
+                    elif type == "all":
+                        # create a list of lines in text1
+                        fileOrg =  fileTmp.replace(srcDir,"projects" + pathSep + pName)
+                        text1Lines = open(fileOrg, "r").readlines()
 
-                    # dito for text2
-                    text2Lines = open(fileTmp, "r").readlines()
-                    diffLst = list(diffC.compare(text1Lines, text2Lines))
-                    for line in diffLst:
-                        if line[0] == '-':
-                            print line
-                            logging.warning(line)
-                    sys.stdout.writelines(diffLst)
-                    logging.warning(diffLst)
-                diffCount += 1
-        else:
-            msgTmp = cleanStr(fileTmp + "\tNot found")
-            msg += msgTmp + "\n"
-            logging.warning(msgTmp)
-            diffCount += 1    
+                        # dito for text2
+                        text2Lines = open(fileTmp, "r").readlines()
+                        diffLst = list(diffC.compare(text1Lines, text2Lines))
+                        for line in diffLst:
+                            if line[0] == '-':
+                                print line
+                                logging.warning(line)
+                        sys.stdout.writelines(diffLst)
+                        logging.warning(diffLst)
+                    diffCount += 1
+            else:
+                msgTmp = cleanStr(fileTmp + "\tNot found")
+                msg += msgTmp + "\n"
+                logging.warning(msgTmp)
+                diffCount += 1    
     #find new files
     listFilesNew = getListFiles(srcDir)
     for fileTmp in listFilesNew:
-        if fileTmp not in listFilesOld:
-            msgTmp = cleanStr(fileTmp + "\t ---- New")
-            msg += msgTmp + "\n"
-            logging.warning(msgTmp)
-            diffCount += 1
+        if checkWhiteList(white_dir, white_ext, fileTmp):
+            if fileTmp not in listFilesOld:
+                msgTmp = cleanStr(fileTmp + "\t ---- New")
+                msg += msgTmp + "\n"
+                logging.warning(msgTmp)
+                diffCount += 1
     if diffCount < 1:
         return False
     return msg
@@ -329,6 +341,14 @@ def sendMail(email, subject, msg=""):
 
     return True
 
+
+def checkWhiteList(lstDir, lstExt, fileName):
+    if getExtension(fileName) in lstExt:
+        return False
+    for l in lstDir:
+        if l in fileName:
+            return False
+    return True
 #
 #start
 # 
