@@ -5,6 +5,7 @@ import feedparser
 import sys
 import glob
 
+
 myPath	 = sys.argv[1]
 lstFile  = glob.glob(myPath + "/*.rss")
 

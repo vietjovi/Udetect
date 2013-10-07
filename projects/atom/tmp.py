@@ -5,6 +5,8 @@ import feedparser
 import sys
 import glob
 
+print ''
+
 def fixStr(inputStr):
   strTmp = inputStr
   return eval(str(strTmp[0]))['value']

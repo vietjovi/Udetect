@@ -301,8 +301,35 @@ def checkProject(pName, type="fast", white_dir = '*', white_ext = '*'):
                 logging.warning(msgTmp)
                 diffCount += 1
     if diffCount < 1:
-        return False
+        return True
+    updateChecksumFiles(pName, srcDir)
     return msg
+
+#
+#update checksum of files
+#
+def updateChecksumFiles(pName, sDir):
+    config = ConfigParser.RawConfigParser()
+    #copy source
+    print "Updating..............................."
+    shutil.rmtree('projects' + pathSep + pName)
+    shutil.copytree(sDir,'projects' + pathSep + pName, symlinks=False, ignore=None)
+    #create directory for udetect
+    print "Finishing............................."
+    if not os.path.exists('projects' + pathSep + pName + pathSep + '.udetect'):
+        os.makedirs('projects' + pathSep + pName + pathSep + '.udetect')
+    #create file config
+    config.add_section(pName)
+    config.add_section("files")
+    config.add_section("directories")        
+    config.set(pName, 'pathS', os.path.abspath(sDir))
+    #config.set(pName, 'version', version)
+    config.set("files", 'listS', walkDir(sDir))
+    config.set("files", 'listP', walkDir('projects' + pathSep + pName))
+    with open('projects'+ pathSep + pName + pathSep + '.udetect'+ pathSep +'.info', 'wb') as configfile:
+        config.write(configfile)
+    return True
+
 
 #
 #send mail
