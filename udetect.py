@@ -36,12 +36,12 @@ for arg in sys.argv:
         projectName = sys.argv[count + 1]
         funcs.delProject(projectName)
         print "Deleted project: " + projectName
-    if arg == 'check':        #check project
-        projectName = sys.argv[count + 1]
-        if '--all' in sys.argv:
-            funcs.check(projectName, "all")
-        else:
-            funcs.check(projectName)
+    # if arg == 'check':        #check project
+    #     projectName = sys.argv[count + 1]
+    #     if '--all' in sys.argv:
+    #         funcs.check(projectName, "all")
+    #     else:
+    #         funcs.check(projectName)
     if arg == 'list':        #show list projects   
         for i in os.listdir('projects'):
         	print i

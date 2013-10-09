@@ -1,23 +1,15 @@
-Udetect v1.0 (c)2012 by S3K4 team - detect change of files, directories
+Udetect v1.0 (c)2013 by S3K4 team | UNS Club - detect change of files, directories
 Website: http://www.uns.vn
 Mail   : vietnguyen@uns.vn
 	 
 Options:
   create project_name source_directory					Create a new project
   list 									Show all projects
-  check project_name							Check a project
-	--diff (default)						Only show different
- 	--all								Comepare full
- 	-o file_name							Write result into a file
   del project_name							Delete a project
   help									Show help  
-  update project_name					update change of files, directories
-   --all (default)						update all files, directories
-   --files path_to_file(directory)		only update specific files, directories
-  restore project_name                    restore
-
 
 Example:
-  backup www directory:
+  To backup 'www' directory:
   python udetect.py create www /var/www/
+  python udetect.py start
  
