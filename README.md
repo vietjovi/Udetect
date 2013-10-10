@@ -6,10 +6,10 @@ INSTALL
 =======  
 1. Installl Python 2.7 or higher.
 2. Install Pip (recommend) or Easy Install (package manager for Python).
-* For Ubuntu/Debian
+* For Ubuntu/Debian  
 sudo apt-get install python-pip
 
-* For Fedora/Centos
+* For Fedora/Centos  
 sudo yum -y install python-pip
 
 * For Windows
@@ -23,18 +23,18 @@ Run command: "pip install -r requirements.txt"
 
 HOW TO USE
 ==========
-1. Create Project (Directories )
-python udetect.py create projectname /path/project/
+1. Create Project (Directories )  
+python udetect.py create projectname /path/project/  
 
-2. Configuration
-udetect.conf
-/*
-	[main_config]
-	email = unstester@gmail.com
-	smtp_pass = noP@ssW0rd
-	smtp_port = 587
-	smtp_server = smtp.gmail.com
-	email_default = vietnguyen@uns.vn // if project 's email is default, Udetect will use this field to replace
+2. Configuration  
+udetect.conf  
+/*  
+	[main_config]  
+	email = unstester@gmail.com  
+	smtp_pass = noP@ssW0rd  
+	smtp_port = 587  
+	smtp_server = smtp.gmail.com  
+	email_default = vietnguyen@uns.vn // if project 's email is default, Udetect will use this field to replace  
 
 	[atom]
 	enable = 1 //enable = 1, disable = 0
