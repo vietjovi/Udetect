@@ -9,10 +9,10 @@ INSTALL
 	+ For Ubuntu/Debian
 > sudo apt-get install python-pip
 
-	+ For Fedora/Centos
+	For Fedora/Centos
 > sudo yum -y install python-pip
 
-	+ For Windows
+	For Windows
 > http://docs.python-guide.org/en/latest/starting/install/win/
 
 3. Install Requirements
