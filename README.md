@@ -1,6 +1,6 @@
 Udetect
 =======
-A tool to detect change of files, directories.
+A tool to monitor changes to your files, directories.
 
 INSTALL
 =======  
@@ -23,7 +23,7 @@ Run command: "pip install -r requirements.txt"
 
 HOW TO USE
 ==========
-1. Create Project
+1. Create Project (Directories )
 python udetect.py create projectname /path/project/
 
 2. Configuration
@@ -39,7 +39,7 @@ udetect.conf
 	[atom]
 	enable = 1 //enable = 1, disable = 0
 	white_ext = * // manage extensions exclusions. Ex: .txt .tmp
-	white_dir = * // manage folders exclusions. Ex: /home/tester/test/logs/ /home/tester/test/cache
+	white_dir = * // manage folders, files exclusions. Ex: /home/tester/test/logs/ /home/tester/test/cache/
 	email = default // set default to use email_default 's value
 	type = fast //fast, full
 */

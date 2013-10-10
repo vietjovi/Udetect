@@ -50,9 +50,9 @@ for arg in sys.argv:
         funcs.showInfoProject(projectName)
     if arg == 'update':
         funcs.update()
-    if arg == 'restore':
+    if arg == 'history':
         projectName = sys.argv[count + 1]
-        funcs.showInfoProject(projectName)     
+        funcs.historyProject(projectName)     
     if arg == 'help':
         funcs.help()
     if arg == 'start':

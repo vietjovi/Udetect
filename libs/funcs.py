@@ -132,6 +132,10 @@ def delProject(pName):
         config.write(configfile)
     return True
 
+def historyProject(pName):
+    return True
+
+
 #
 #output into a file
 #
@@ -186,9 +190,9 @@ def showInfoProject(pName):
     config = ConfigParser.ConfigParser()
     config.readfp(open('projects' + pathSep + pName + pathSep + '.udetect' + pathSep + '.info'))
     srcDir = config.get(pName,'pathS')
-    version = int(config.get(pName,'version'))
+    # version = int(config.get(pName,'version'))
     print "source: " + srcDir
-    print "version: " + str(version)
+    # print "version: " + str(version)
     f = open('projects' + pathSep + pName + pathSep + '.udetect' + pathSep + '.change.log', 'r')
     print f.read()
     f.close()
