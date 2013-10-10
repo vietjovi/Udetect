@@ -303,22 +303,23 @@ def checkProject(pName, type="fast", white_dir = '*', white_ext = '*'):
 #start check
     for x in lstFilesNew:
         if x not in lstFilesOld:
-            msgTmp = cleanStr(x + "\t ---- New")
+            msgTmp = cleanStr(x + "\t ---- New  file")
             msg += msgTmp + "\n"
             logging.warning(msgTmp)
             diffCount += 1
     for x in lstFilesOld:
         if x not in lstFilesNew:
-            msgTmp = cleanStr(x + "\t ---- Not found")
+            msgTmp = cleanStr(x + "\t ---- Not exist")
             msg += msgTmp + "\n"
             logging.warning(msgTmp)
             diffCount += 1
 
-
+    print lstDirsOrg
+    print lstDirsNew
     #Check Directories
     for x in lstDirsOrg:
         if x not in lstDirsNew:
-            msgTmp = cleanStr(fileTmp + "\t ---- Not found")
+            msgTmp = cleanStr(x + "\t ---- Not exist")
             msg += msgTmp + "\n"
             logging.warning(msgTmp)
             diffCount += 1
@@ -326,7 +327,7 @@ def checkProject(pName, type="fast", white_dir = '*', white_ext = '*'):
 
     for x in lstDirsNew:
         if x not in lstDirsOrg:
-            msgTmp = cleanStr(fileTmp + "\t ---- New")
+            msgTmp = cleanStr(x + "\t ---- New folder")
             msg += msgTmp + "\n"
             logging.warning(msgTmp)
             diffCount += 1
