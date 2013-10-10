@@ -6,14 +6,14 @@ INSTALL
 =======  
 1. Installl Python 2.7 or higher.
 2. Install Pip (recommend) or Easy Install (package manager for Python).
-* For Ubuntu/Debian
-** sudo apt-get install python-pip
+	* For Ubuntu/Debian
+	** sudo apt-get install python-pip
 
-* For Fedora/Centos
-** sudo yum -y install python-pip
+	* For Fedora/Centos
+	** sudo yum -y install python-pip
 
-* For Windows
-** Read at http://docs.python-guide.org/en/latest/starting/install/win/
+	* For Windows
+	** Read at http://docs.python-guide.org/en/latest/starting/install/win/
 
 3. Install Requirements
 Run command: "pip install -r requirements.txt"
