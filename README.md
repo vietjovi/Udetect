@@ -26,7 +26,7 @@ HOW TO USE
 >python udetect.py create projectname /path/project/  
 
 2. Configuration  
-udetect.conf  
+__udetect.conf__  
 >	[main_config]  
 >	email = unstester@gmail.com  
 >	smtp_pass = noP@ssW0rd  

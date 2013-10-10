@@ -8,9 +8,11 @@ import ConfigParser
 import hashlib
 import difflib
 import logging
+import logging.handlers
 import smtplib
 
-
+LOG_FILENAME = 'udetect.log'
+LOG_MAXSIZE = 10*1024 #10 MB
 #
 #varialble
 #
@@ -66,7 +68,7 @@ def createProject(pName, sDir, version = 1):
 
         if(version == 1):
             print "Create a project successful: " + pName
-        open('projects'+ pathSep + pName + pathSep + '.udetect' + pathSep + '.change.log' , 'a').close()
+        open('log' + pathSep + LOG_FILENAME , 'a').close()
     except:
         delProject(pName)
         return False
@@ -100,6 +102,8 @@ def getListFiles(pathVar):
 
 def getListDirs(pathVar):
     dirS = []
+    for x in os.walk(pathVar):
+        dirS.append(x[0])
     return dirS 
 
 def countFiles(Barr):
@@ -193,9 +197,6 @@ def showInfoProject(pName):
     # version = int(config.get(pName,'version'))
     print "source: " + srcDir
     # print "version: " + str(version)
-    f = open('projects' + pathSep + pName + pathSep + '.udetect' + pathSep + '.change.log', 'r')
-    print f.read()
-    f.close()
     return True
 
 #
@@ -247,63 +248,89 @@ def getFileName(fileName):
 def checkProject(pName, type="fast", white_dir = '*', white_ext = '*'):
     msg = ''
     msgTmp = ''
-    fName = 'projects' + pathSep + pName + pathSep + '.udetect/.change.log'
+    lstDirsOrg = []
+    lstFilesOld = []
+    lstFilesNew = []
+    lstDirsNew = []
+    fName = 'log' + pathSep + LOG_FILENAME
     logging.basicConfig(filename=fName, level=logging.DEBUG, format='%(asctime)s %(message)s')
+    handler = logging.handlers.RotatingFileHandler(LOG_FILENAME, maxBytes=LOG_MAXSIZE, backupCount=5)
     # logging.debug('minion')
     # logging.info('banana')
     # logging.warning(potato')
-    white_dir = white_dir.split(' ')
-    white_ext = white_ext.split(' ')
+    if white_dir == "*":
+        white_dir = []
+    else:
+        white_dir = white_dir.split(' ')     
 
-    diffCount = 0 
+    if white_ext == "*":
+        white_ext = []
+    else:
+        white_ext = white_ext.split(' ')
+    white_ext.append('.udetect')
+    white_dir.append('.udetect')
+    diffCount = 0
+
     print "Project Name:\t\t" + pName
     config = ConfigParser.ConfigParser()
     config.readfp(open('projects' + pathSep + pName + pathSep + '.udetect' + pathSep + '.info'))
     srcDir = config.get(pName,'pathS')
-    listFilesOld = []
+
     print "Path:        \t\t" + srcDir
     lstOrg = eval(config.get('files','listS'))
 
+#create list files, dirs org
     for i in lstOrg:
+        if checkWhiteList(white_dir, white_ext, i[0]):
+            if i[0] not in lstDirsOrg:
+                lstDirsOrg.append(i[0])
+
         fileTmp = i[0] + pathSep + i[1][0]
         if checkWhiteList(white_dir, white_ext, fileTmp):
-            listFilesOld.append(cleanStr(fileTmp))
-            if os.path.exists(fileTmp):
-                if (md5Checksum(fileTmp) != i[1][1]):
-                    if type == "fast":
-                        msgTmp = "Lines different in " + i[1][0] + ":"                    
-                        logging.warning(msgTmp)
-                        msg += msgTmp + "\n"
-                        
-                    elif type == "all":
-                        # create a list of lines in text1
-                        fileOrg =  fileTmp.replace(srcDir,"projects" + pathSep + pName)
-                        text1Lines = open(fileOrg, "r").readlines()
+            lstFilesOld.append(cleanStr(fileTmp))
 
-                        # dito for text2
-                        text2Lines = open(fileTmp, "r").readlines()
-                        diffLst = list(diffC.compare(text1Lines, text2Lines))
-                        for line in diffLst:
-                            if line[0] == '-':
-                                print line
-                                logging.warning(line)
-                        sys.stdout.writelines(diffLst)
-                        logging.warning(diffLst)
-                    diffCount += 1
-            else:
-                msgTmp = cleanStr(fileTmp + "\tNot found")
-                msg += msgTmp + "\n"
-                logging.warning(msgTmp)
-                diffCount += 1    
-    #find new files
-    listFilesNew = getListFiles(srcDir)
-    for fileTmp in listFilesNew:
-        if checkWhiteList(white_dir, white_ext, fileTmp):
-            if fileTmp not in listFilesOld:
-                msgTmp = cleanStr(fileTmp + "\t ---- New")
-                msg += msgTmp + "\n"
-                logging.warning(msgTmp)
-                diffCount += 1
+#create list files, dirs new
+    for path, dirs, files in os.walk(srcDir):
+        for f in files:
+            if checkWhiteList(white_dir, white_ext, path + pathSep + f):
+                lstFilesNew.append(cleanStr(path + pathSep + f))
+
+
+    for x in os.walk(srcDir):
+        if checkWhiteList(white_dir, white_ext, x[0]):
+            lstDirsNew.append(x[0])
+
+#start check
+    for x in lstFilesNew:
+        if x not in lstFilesOld:
+            msgTmp = cleanStr(x + "\t ---- New")
+            msg += msgTmp + "\n"
+            logging.warning(msgTmp)
+            diffCount += 1
+    for x in lstFilesOld:
+        if x not in lstFilesNew:
+            msgTmp = cleanStr(x + "\t ---- Not found")
+            msg += msgTmp + "\n"
+            logging.warning(msgTmp)
+            diffCount += 1
+
+
+    #Check Directories
+    for x in lstDirsOrg:
+        if x not in lstDirsNew:
+            msgTmp = cleanStr(fileTmp + "\t ---- Not found")
+            msg += msgTmp + "\n"
+            logging.warning(msgTmp)
+            diffCount += 1
+
+
+    for x in lstDirsNew:
+        if x not in lstDirsOrg:
+            msgTmp = cleanStr(fileTmp + "\t ---- New")
+            msg += msgTmp + "\n"
+            logging.warning(msgTmp)
+            diffCount += 1
+    exit()
     if diffCount < 1:
         return True
     updateChecksumFiles(pName, srcDir)
@@ -374,8 +401,10 @@ def sendMail(email, subject, msg=""):
 
 
 def checkWhiteList(lstDir, lstExt, fileName):
-    if getExtension(fileName) in lstExt:
-        return False
+    #print fileName
+    if(os.path.isfile(fileName)):
+        if getExtension(fileName) in lstExt:
+            return False
     for l in lstDir:
         if l in fileName:
             return False
