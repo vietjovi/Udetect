@@ -273,3 +273,7 @@
 2013-10-12 00:45:22,119 /home/pentester/atom/vietjovi	 ---- New folder
 2013-10-12 00:46:14,447 /home/pentester/atom/test2.txt	 ---- Modified
 2013-10-12 00:50:21,854 /home/pentester/atom/test4.txt	 ---- Modified
+2013-10-12 01:09:09,024 /home/pentester/atom/hupa.txt	 ---- New  file
+2013-10-12 01:09:09,041 /home/pentester/atom/news	 ---- Not exist
+2013-10-12 01:09:09,042 /home/pentester/atom/news2/test	 ---- New folder
+2013-10-12 01:09:58,490 /home/pentester/atom/test2.txt	 ---- Modified

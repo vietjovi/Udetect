@@ -389,7 +389,7 @@ def sendMail(email, subject, msg=""):
     smtpPort = config.get('main_config', 'smtp_port')
     smtpPass = config.get('main_config', 'smtp_pass')
 
-    subject = 'Gmail SMTP Test'
+    subject = subject
     body = 'blah blah blah'
      
     "Sends an e-mail to the specified recipient."
