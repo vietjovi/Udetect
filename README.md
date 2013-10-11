@@ -44,6 +44,7 @@ __udetect.conf__
 3. Run manual (or use Crontab on Linux)
 >python udetect.py start  
 
+4. If no use email, can view log file to get informations.  
 
 SUPPORT
 =======
