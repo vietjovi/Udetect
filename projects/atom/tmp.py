@@ -5,8 +5,6 @@ import feedparser
 import sys
 import glob
 
-print ''
-
 def fixStr(inputStr):
   strTmp = inputStr
   return eval(str(strTmp[0]))['value']
@@ -21,5 +19,6 @@ for i in range(0,len(feedOld["items"])):
 		content = fixStr(feedOld["items"][i]["content"])
 	except:
 		content = feedOld["items"][i]["title"]
-	print content
-	#raw_input()
+	raw_input()
+#exit()
+print 'a'

@@ -46,7 +46,8 @@ def createProject(pName, sDir, version = 1):
         #create file config
         config.add_section(pName)
         config.add_section("files")
-        config.add_section("directories")        
+        config.add_section("directories")
+        config.set("directories",'listD', getListDirectories(sDir))        
         config.set(pName, 'pathS', os.path.abspath(sDir))
         config.set(pName, 'version', version)
         config.set("files", 'listS', walkDir(sDir))
@@ -68,12 +69,19 @@ def createProject(pName, sDir, version = 1):
 
         if(version == 1):
             print "Create a project successful: " + pName
-        open('log' + pathSep + LOG_FILENAME , 'a').close()
+        #open('log' + pathSep + LOG_FILENAME , 'a').close()
     except:
+        #raise
         delProject(pName)
         return False
 
     return True
+
+def getListDirectories(pathVar):
+    arrTmp = []
+    for x in os.walk(pathVar):
+        arrTmp.append(x[0])
+    return arrTmp
 
 def copyAll(src, dst):
     try:
@@ -88,7 +96,7 @@ def walkDir(pathVar):
     fileS = []
     for path, dirs, files in os.walk(pathVar):
         for f in files:
-            print cleanStr(path + pathSep + f + " ------ " + md5Checksum(path + pathSep + f))
+            #print cleanStr(path + pathSep + f + " ------ " + md5Checksum(path + pathSep + f))
             dirS.append([cleanStr(path), [f, md5Checksum(path + pathSep + f)]])
     return dirS
 
@@ -153,28 +161,6 @@ def outputToFile(fileName, resultContent):
 #
 def logEvents(logContent):
 
-    return True
-
-#
-#update
-#
-def updateProject(pName):
-    config = ConfigParser.ConfigParser()
-    config.readfp(open('projects' + pathSep + pName + pathSep + '.udetect' + pathSep + '.info'))
-    srcDir = config.get(pName,'pathS')
-    version = int(config.get(pName,'version'))
-    print "version: " + str(version)
-    print srcDir
-    try:
-        print "Backing up..............."
-        os.rename("projects" + pathSep + pName, "revisions" + pathSep +  pName + "_" + str(version))
-        print "Project Name:\t\t" + pName
-        print "Updating................."
-        createProject(pName, srcDir, str(version + 1))
-    except:
-        print "Failed!"
-        return False
-    print "Successful!"
     return True
 
 #
@@ -250,7 +236,9 @@ def checkProject(pName, type="fast", white_dir = '*', white_ext = '*'):
     msgTmp = ''
     lstDirsOrg = []
     lstFilesOld = []
+    lstFilesOldSum = []
     lstFilesNew = []
+    lstFilesNewSum = []
     lstDirsNew = []
     fName = 'log' + pathSep + LOG_FILENAME
     logging.basicConfig(filename=fName, level=logging.DEBUG, format='%(asctime)s %(message)s')
@@ -267,7 +255,7 @@ def checkProject(pName, type="fast", white_dir = '*', white_ext = '*'):
         white_ext = []
     else:
         white_ext = white_ext.split(' ')
-    white_ext.append('.udetect')
+    white_ext
     white_dir.append('.udetect')
     diffCount = 0
 
@@ -278,15 +266,18 @@ def checkProject(pName, type="fast", white_dir = '*', white_ext = '*'):
 
     print "Path:        \t\t" + srcDir
     lstOrg = eval(config.get('files','listS'))
+    lstOrgDir = eval(config.get('directories','listD'))
 
 #create list files, dirs org
-    for i in lstOrg:
-        if checkWhiteList(white_dir, white_ext, i[0]):
-            if i[0] not in lstDirsOrg:
-                lstDirsOrg.append(i[0])
+    for i in lstOrgDir:
+        if checkWhiteList(white_dir, white_ext, i):
+            lstDirsOrg.append(i)
 
+    for i in lstOrg:
         fileTmp = i[0] + pathSep + i[1][0]
         if checkWhiteList(white_dir, white_ext, fileTmp):
+            arrTmp = [cleanStr(fileTmp), i[1][1]]
+            lstFilesOldSum.append(arrTmp)
             lstFilesOld.append(cleanStr(fileTmp))
 
 #create list files, dirs new
@@ -307,15 +298,23 @@ def checkProject(pName, type="fast", white_dir = '*', white_ext = '*'):
             msg += msgTmp + "\n"
             logging.warning(msgTmp)
             diffCount += 1
+
     for x in lstFilesOld:
         if x not in lstFilesNew:
             msgTmp = cleanStr(x + "\t ---- Not exist")
             msg += msgTmp + "\n"
             logging.warning(msgTmp)
             diffCount += 1
+        else:
+            arrTmp = [x, md5Checksum(x)]
+            if arrTmp not in lstFilesOldSum: # file modified
+                msgTmp = cleanStr(x + "\t ---- Modified")
+                msg += msgTmp + "\n"
+                logging.warning(msgTmp)
+                diffCount += 1
+                if type == 'full':
+                    msg += compareFiles(x.replace(srcDir,"projects" + pathSep + pName), x)
 
-    print lstDirsOrg
-    print lstDirsNew
     #Check Directories
     for x in lstDirsOrg:
         if x not in lstDirsNew:
@@ -324,42 +323,58 @@ def checkProject(pName, type="fast", white_dir = '*', white_ext = '*'):
             logging.warning(msgTmp)
             diffCount += 1
 
-
     for x in lstDirsNew:
         if x not in lstDirsOrg:
             msgTmp = cleanStr(x + "\t ---- New folder")
             msg += msgTmp + "\n"
             logging.warning(msgTmp)
             diffCount += 1
-    exit()
+
     if diffCount < 1:
         return True
-    updateChecksumFiles(pName, srcDir)
+    updateProject(pName, srcDir)
     return msg
 
 #
+#Compare files
+#
+def compareFiles(f1, f2):
+    msg = ''
+    text1Lines = open(f1, "r").readlines()
+    text2Lines = open(f2, "r").readlines()
+    diffLst = list(diffC.compare(text1Lines, text2Lines))
+    # for line in diffLst:
+    #     if line[0] == '-':
+    #         print line
+    #sys.stdout.writelines(diffLst)
+    logging.warning(diffLst)
+    msg = difflib.HtmlDiff().make_file(text1Lines, text2Lines)
+    return msg
+#
 #update checksum of files
 #
-def updateChecksumFiles(pName, sDir):
+def updateProject(pName, sDir):
     config = ConfigParser.RawConfigParser()
     #copy source
     print "Updating..............................."
     shutil.rmtree('projects' + pathSep + pName)
-    shutil.copytree(sDir,'projects' + pathSep + pName, symlinks=False, ignore=None)
-    #create directory for udetect
-    print "Finishing............................."
-    if not os.path.exists('projects' + pathSep + pName + pathSep + '.udetect'):
-        os.makedirs('projects' + pathSep + pName + pathSep + '.udetect')
-    #create file config
-    config.add_section(pName)
-    config.add_section("files")
-    config.add_section("directories")        
-    config.set(pName, 'pathS', os.path.abspath(sDir))
-    #config.set(pName, 'version', version)
-    config.set("files", 'listS', walkDir(sDir))
-    config.set("files", 'listP', walkDir('projects' + pathSep + pName))
-    with open('projects'+ pathSep + pName + pathSep + '.udetect'+ pathSep +'.info', 'wb') as configfile:
-        config.write(configfile)
+    #exit()
+    createProject(pName, sDir)
+    # shutil.copytree(sDir,'projects' + pathSep + pName, symlinks=False, ignore=None)
+    # #create directory for udetect
+    # print "Finishing............................."
+    # if not os.path.exists('projects' + pathSep + pName + pathSep + '.udetect'):
+    #     os.makedirs('projects' + pathSep + pName + pathSep + '.udetect')
+    # #create file config
+    # config.add_section(pName)
+    # config.add_section("files")
+    # config.add_section("directories")        
+    # config.set(pName, 'pathS', os.path.abspath(sDir))
+    # #config.set(pName, 'version', version)
+    # config.set("files", 'listS', walkDir(sDir))
+    # config.set("files", 'listP', walkDir('projects' + pathSep + pName))
+    # with open('projects'+ pathSep + pName + pathSep + '.udetect'+ pathSep +'.info', 'wb') as configfile:
+    #     config.write(configfile)
     return True
 
 
@@ -424,7 +439,7 @@ def start():
                 result = checkProject(pName, config.get(pName, "type"), config.get(pName, "white_dir"), config.get(pName, "white_ext"))
                 if result:                    
                     try:
-                        print result
+                        #print result
                         email = config.get(pName,'email')
                         if email == 'default':
                             email = defaultEmail

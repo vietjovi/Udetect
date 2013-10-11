@@ -39,3 +39,237 @@
 2013-10-11 00:23:27,566 /home/pentester/atom/test5.txt	 ---- Not found
 2013-10-11 00:23:27,566 /home/pentester/atom/news/test.txt	 ---- Not found
 2013-10-11 00:23:27,566 /home/pentester/atom/news2	 ---- New
+2013-10-11 22:01:04,048 /home/pentester/atom/the-loai-4.rss	 ---- New  file
+2013-10-11 22:01:04,059 /home/pentester/atom/generateFeedAtom-notranslate.py	 ---- New  file
+2013-10-11 22:01:04,059 /home/pentester/atom/markReadAll.py	 ---- New  file
+2013-10-11 22:01:04,059 /home/pentester/atom/generateFeedAtom.py	 ---- New  file
+2013-10-11 22:01:04,059 /home/pentester/atom/test3.txt	 ---- New  file
+2013-10-11 22:01:04,059 /home/pentester/atom/test2.txt	 ---- New  file
+2013-10-11 22:01:04,059 /home/pentester/atom/rss.log	 ---- New  file
+2013-10-11 22:01:04,059 /home/pentester/atom/generateFeedAtom12-6-2013.py	 ---- New  file
+2013-10-11 22:01:04,059 /home/pentester/atom/the-loai-5.rss	 ---- New  file
+2013-10-11 22:01:04,059 /home/pentester/atom/test4.txt	 ---- New  file
+2013-10-11 22:01:04,059 /home/pentester/atom/generateFeedAtom-translate.py	 ---- New  file
+2013-10-11 22:01:04,059 /home/pentester/atom/tmp.py	 ---- New  file
+2013-10-11 22:01:04,059 /home/pentester/atom/the-loai-6.rss	 ---- New  file
+2013-10-11 22:01:04,059 /home/pentester/atom/generateFeedAtom-nemo.py	 ---- New  file
+2013-10-11 22:01:04,060 /home/pentester/atom/test.txt	 ---- New  file
+2013-10-11 22:01:04,060 /home/pentester/atom/countNews.py.v1	 ---- New  file
+2013-10-11 22:01:04,060 /home/pentester/atom/generateFeedAtom2.py	 ---- New  file
+2013-10-11 22:01:04,060 /home/pentester/atom/trung-quoc-2.rss	 ---- New  file
+2013-10-11 22:01:04,060 /home/pentester/atom/countNews.py	 ---- New  file
+2013-10-11 22:01:04,060 /home/pentester/atom/test/the-loai-4.rss	 ---- New  file
+2013-10-11 22:01:04,060 /home/pentester/atom/test/the-loai-5.rss	 ---- New  file
+2013-10-11 22:01:04,060 /home/pentester/atom/test/the-loai-6.rss	 ---- New  file
+2013-10-11 22:01:04,060 /home/pentester/atom/test/test.txt	 ---- New  file
+2013-10-11 22:07:00,980 /home/pentester/atom/test5.txt	 ---- Not exist
+2013-10-11 22:07:00,980 /home/pentester/atom/news/test.txt	 ---- Not exist
+2013-10-11 22:07:00,981 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 22:07:16,296 /home/pentester/atom/test5.txt	 ---- Not exist
+2013-10-11 22:07:16,296 /home/pentester/atom/news/test.txt	 ---- Not exist
+2013-10-11 22:07:16,296 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 22:26:35,947 /home/pentester/atom/test5.txt	 ---- Not exist
+2013-10-11 22:26:35,948 /home/pentester/atom/news/test.txt	 ---- Not exist
+2013-10-11 22:26:35,954 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 22:26:41,377 /home/pentester/atom/test5.txt	 ---- Not exist
+2013-10-11 22:26:41,377 /home/pentester/atom/news/test.txt	 ---- Not exist
+2013-10-11 22:26:41,383 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 22:27:00,139 /home/pentester/atom/test.txt	 ---- Modified
+2013-10-11 22:27:00,147 /home/pentester/atom/test5.txt	 ---- Not exist
+2013-10-11 22:27:00,148 /home/pentester/atom/news/test.txt	 ---- Not exist
+2013-10-11 22:27:00,154 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 22:58:17,449 /home/pentester/atom/test.txt	 ---- Modified
+2013-10-11 22:58:31,039 /home/pentester/atom/test.txt	 ---- Modified
+2013-10-11 22:58:31,047 /home/pentester/atom/test5.txt	 ---- Not exist
+2013-10-11 22:58:31,047 /home/pentester/atom/news/test.txt	 ---- Not exist
+2013-10-11 22:58:31,053 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:00:11,627 /home/pentester/atom/test.txt	 ---- Modified
+2013-10-11 23:00:11,635 /home/pentester/atom/test5.txt	 ---- Not exist
+2013-10-11 23:00:11,635 /home/pentester/atom/news/test.txt	 ---- Not exist
+2013-10-11 23:00:11,641 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:00:14,649 /home/pentester/atom/test.txt	 ---- Modified
+2013-10-11 23:00:14,657 /home/pentester/atom/test5.txt	 ---- Not exist
+2013-10-11 23:00:14,657 /home/pentester/atom/news/test.txt	 ---- Not exist
+2013-10-11 23:00:14,663 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:00:36,059 /home/pentester/atom/test.txt	 ---- Modified
+2013-10-11 23:00:36,060 ['+ test\n']
+2013-10-11 23:00:36,067 /home/pentester/atom/test5.txt	 ---- Not exist
+2013-10-11 23:00:36,067 /home/pentester/atom/news/test.txt	 ---- Not exist
+2013-10-11 23:00:36,072 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:00:40,293 /home/pentester/atom/test.txt	 ---- Modified
+2013-10-11 23:00:40,294 ['+ test\n']
+2013-10-11 23:00:40,301 /home/pentester/atom/test5.txt	 ---- Not exist
+2013-10-11 23:00:40,301 /home/pentester/atom/news/test.txt	 ---- Not exist
+2013-10-11 23:00:40,307 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:00:41,915 /home/pentester/atom/test.txt	 ---- Modified
+2013-10-11 23:00:41,915 ['+ test\n']
+2013-10-11 23:00:41,922 /home/pentester/atom/test5.txt	 ---- Not exist
+2013-10-11 23:00:41,923 /home/pentester/atom/news/test.txt	 ---- Not exist
+2013-10-11 23:00:41,928 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:00:43,511 /home/pentester/atom/test.txt	 ---- Modified
+2013-10-11 23:00:43,511 ['+ test\n']
+2013-10-11 23:00:43,519 /home/pentester/atom/test5.txt	 ---- Not exist
+2013-10-11 23:00:43,519 /home/pentester/atom/news/test.txt	 ---- Not exist
+2013-10-11 23:00:43,525 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:00:44,219 /home/pentester/atom/test.txt	 ---- Modified
+2013-10-11 23:00:44,219 ['+ test\n']
+2013-10-11 23:00:44,227 /home/pentester/atom/test5.txt	 ---- Not exist
+2013-10-11 23:00:44,227 /home/pentester/atom/news/test.txt	 ---- Not exist
+2013-10-11 23:00:44,232 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:00:44,840 /home/pentester/atom/test.txt	 ---- Modified
+2013-10-11 23:00:44,840 ['+ test\n']
+2013-10-11 23:00:44,848 /home/pentester/atom/test5.txt	 ---- Not exist
+2013-10-11 23:00:44,848 /home/pentester/atom/news/test.txt	 ---- Not exist
+2013-10-11 23:00:44,854 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:00:45,508 /home/pentester/atom/test.txt	 ---- Modified
+2013-10-11 23:00:45,509 ['+ test\n']
+2013-10-11 23:00:45,516 /home/pentester/atom/test5.txt	 ---- Not exist
+2013-10-11 23:00:45,516 /home/pentester/atom/news/test.txt	 ---- Not exist
+2013-10-11 23:00:45,522 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:02:24,937 /home/pentester/atom/test.txt	 ---- Modified
+2013-10-11 23:02:24,937 ['+ test\n']
+2013-10-11 23:02:24,945 /home/pentester/atom/tmp.py	 ---- Modified
+2013-10-11 23:02:24,971 ['  #!/usr/bin/python\n', '  # -*- coding: utf-8 -*-\n', '  \n', '  import feedparser\n', '  import sys\n', '  import glob\n', '- \n', "- print ''\n", '  \n', '  def fixStr(inputStr):\n', '    strTmp = inputStr\n', "    return eval(str(strTmp[0]))['value']\n", '  \n', "  feedOld = feedOld = feedparser.parse('/var/www/atom/trung-quoc.rss')\n", '  numFeedOld = len(feedOld["items"])\n', '  \n', '  for i in range(0,len(feedOld["items"])):\n', '  \tprint i\n', '  \tprint feedOld["items"][i]\n', '  \ttry:\n', '  \t\tcontent = fixStr(feedOld["items"][i]["content"])\n', '  \texcept:\n', '  \t\tcontent = feedOld["items"][i]["title"]\n', '- \tprint content\n', '+ \t#print content\n', '? \t+\n', '  \t#raw_input()\n', '+ exit()\n']
+2013-10-11 23:02:24,972 /home/pentester/atom/test5.txt	 ---- Not exist
+2013-10-11 23:02:24,972 /home/pentester/atom/news/test.txt	 ---- Not exist
+2013-10-11 23:02:24,977 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:03:19,866 /home/pentester/atom/test.txt	 ---- Modified
+2013-10-11 23:03:19,867 ['+ test\n']
+2013-10-11 23:03:19,874 /home/pentester/atom/tmp.py	 ---- Modified
+2013-10-11 23:03:19,874 ['  #!/usr/bin/python\n', '  # -*- coding: utf-8 -*-\n', '  \n', '  import feedparser\n', '  import sys\n', '  import glob\n', '- \n', "- print ''\n", '  \n', '  def fixStr(inputStr):\n', '    strTmp = inputStr\n', "    return eval(str(strTmp[0]))['value']\n", '  \n', "  feedOld = feedOld = feedparser.parse('/var/www/atom/trung-quoc.rss')\n", '  numFeedOld = len(feedOld["items"])\n', '  \n', '  for i in range(0,len(feedOld["items"])):\n', '  \tprint i\n', '  \tprint feedOld["items"][i]\n', '  \ttry:\n', '  \t\tcontent = fixStr(feedOld["items"][i]["content"])\n', '  \texcept:\n', '  \t\tcontent = feedOld["items"][i]["title"]\n', '- \tprint content\n', '+ \t#print content\n', '? \t+\n', '  \t#raw_input()\n', '+ exit()\n']
+2013-10-11 23:03:19,874 /home/pentester/atom/test5.txt	 ---- Not exist
+2013-10-11 23:03:19,875 /home/pentester/atom/news/test.txt	 ---- Not exist
+2013-10-11 23:03:19,880 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:03:23,828 /home/pentester/atom/test.txt	 ---- Modified
+2013-10-11 23:03:23,829 ['+ test\n']
+2013-10-11 23:03:23,836 /home/pentester/atom/tmp.py	 ---- Modified
+2013-10-11 23:03:23,837 ['  #!/usr/bin/python\n', '  # -*- coding: utf-8 -*-\n', '  \n', '  import feedparser\n', '  import sys\n', '  import glob\n', '- \n', "- print ''\n", '  \n', '  def fixStr(inputStr):\n', '    strTmp = inputStr\n', "    return eval(str(strTmp[0]))['value']\n", '  \n', "  feedOld = feedOld = feedparser.parse('/var/www/atom/trung-quoc.rss')\n", '  numFeedOld = len(feedOld["items"])\n', '  \n', '  for i in range(0,len(feedOld["items"])):\n', '  \tprint i\n', '  \tprint feedOld["items"][i]\n', '  \ttry:\n', '  \t\tcontent = fixStr(feedOld["items"][i]["content"])\n', '  \texcept:\n', '  \t\tcontent = feedOld["items"][i]["title"]\n', '- \tprint content\n', '+ \t#print content\n', '? \t+\n', '  \t#raw_input()\n', '+ exit()\n']
+2013-10-11 23:03:23,837 /home/pentester/atom/test5.txt	 ---- Not exist
+2013-10-11 23:03:23,837 /home/pentester/atom/news/test.txt	 ---- Not exist
+2013-10-11 23:03:23,843 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:03:26,693 /home/pentester/atom/test.txt	 ---- Modified
+2013-10-11 23:03:26,693 ['+ test\n']
+2013-10-11 23:03:26,700 /home/pentester/atom/tmp.py	 ---- Modified
+2013-10-11 23:03:26,701 ['  #!/usr/bin/python\n', '  # -*- coding: utf-8 -*-\n', '  \n', '  import feedparser\n', '  import sys\n', '  import glob\n', '- \n', "- print ''\n", '  \n', '  def fixStr(inputStr):\n', '    strTmp = inputStr\n', "    return eval(str(strTmp[0]))['value']\n", '  \n', "  feedOld = feedOld = feedparser.parse('/var/www/atom/trung-quoc.rss')\n", '  numFeedOld = len(feedOld["items"])\n', '  \n', '  for i in range(0,len(feedOld["items"])):\n', '  \tprint i\n', '  \tprint feedOld["items"][i]\n', '  \ttry:\n', '  \t\tcontent = fixStr(feedOld["items"][i]["content"])\n', '  \texcept:\n', '  \t\tcontent = feedOld["items"][i]["title"]\n', '- \tprint content\n', '+ \t#print content\n', '? \t+\n', '  \t#raw_input()\n', '+ exit()\n']
+2013-10-11 23:03:26,701 /home/pentester/atom/test5.txt	 ---- Not exist
+2013-10-11 23:03:26,701 /home/pentester/atom/news/test.txt	 ---- Not exist
+2013-10-11 23:03:26,707 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:12:25,950 /home/pentester/atom/test.txt	 ---- Modified
+2013-10-11 23:12:25,958 /home/pentester/atom/tmp.py	 ---- Modified
+2013-10-11 23:12:25,960 /home/pentester/atom/test5.txt	 ---- Not exist
+2013-10-11 23:12:25,960 /home/pentester/atom/news/test.txt	 ---- Not exist
+2013-10-11 23:12:25,966 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:13:08,028 /home/pentester/atom/test.txt	 ---- Modified
+2013-10-11 23:13:08,037 /home/pentester/atom/tmp.py	 ---- Modified
+2013-10-11 23:13:08,038 /home/pentester/atom/test5.txt	 ---- Not exist
+2013-10-11 23:13:08,039 /home/pentester/atom/news/test.txt	 ---- Not exist
+2013-10-11 23:13:08,044 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:16:00,346 /home/pentester/atom/test.txt	 ---- Modified
+2013-10-11 23:16:00,355 /home/pentester/atom/tmp.py	 ---- Modified
+2013-10-11 23:16:00,356 /home/pentester/atom/test5.txt	 ---- Not exist
+2013-10-11 23:16:00,356 /home/pentester/atom/news/test.txt	 ---- Not exist
+2013-10-11 23:16:00,362 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:16:02,429 /home/pentester/atom/test.txt	 ---- Modified
+2013-10-11 23:16:02,438 /home/pentester/atom/tmp.py	 ---- Modified
+2013-10-11 23:16:02,439 /home/pentester/atom/test5.txt	 ---- Not exist
+2013-10-11 23:16:02,439 /home/pentester/atom/news/test.txt	 ---- Not exist
+2013-10-11 23:16:02,445 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:16:03,168 /home/pentester/atom/test.txt	 ---- Modified
+2013-10-11 23:16:03,177 /home/pentester/atom/tmp.py	 ---- Modified
+2013-10-11 23:16:03,178 /home/pentester/atom/test5.txt	 ---- Not exist
+2013-10-11 23:16:03,178 /home/pentester/atom/news/test.txt	 ---- Not exist
+2013-10-11 23:16:03,184 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:16:03,845 /home/pentester/atom/test.txt	 ---- Modified
+2013-10-11 23:16:03,853 /home/pentester/atom/tmp.py	 ---- Modified
+2013-10-11 23:16:03,855 /home/pentester/atom/test5.txt	 ---- Not exist
+2013-10-11 23:16:03,855 /home/pentester/atom/news/test.txt	 ---- Not exist
+2013-10-11 23:16:03,860 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:16:04,473 /home/pentester/atom/test.txt	 ---- Modified
+2013-10-11 23:16:04,481 /home/pentester/atom/tmp.py	 ---- Modified
+2013-10-11 23:16:04,482 /home/pentester/atom/test5.txt	 ---- Not exist
+2013-10-11 23:16:04,482 /home/pentester/atom/news/test.txt	 ---- Not exist
+2013-10-11 23:16:04,488 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:16:05,045 /home/pentester/atom/test.txt	 ---- Modified
+2013-10-11 23:16:05,053 /home/pentester/atom/tmp.py	 ---- Modified
+2013-10-11 23:16:05,055 /home/pentester/atom/test5.txt	 ---- Not exist
+2013-10-11 23:16:05,055 /home/pentester/atom/news/test.txt	 ---- Not exist
+2013-10-11 23:16:05,061 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:16:14,568 /home/pentester/atom/test.txt	 ---- Modified
+2013-10-11 23:16:14,576 /home/pentester/atom/tmp.py	 ---- Modified
+2013-10-11 23:16:14,578 /home/pentester/atom/test5.txt	 ---- Not exist
+2013-10-11 23:16:14,578 /home/pentester/atom/news/test.txt	 ---- Not exist
+2013-10-11 23:16:14,584 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:16:17,952 /home/pentester/atom/test.txt	 ---- Modified
+2013-10-11 23:16:17,960 /home/pentester/atom/tmp.py	 ---- Modified
+2013-10-11 23:16:17,961 /home/pentester/atom/test5.txt	 ---- Not exist
+2013-10-11 23:16:17,961 /home/pentester/atom/news/test.txt	 ---- Not exist
+2013-10-11 23:16:17,967 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:16:21,792 /home/pentester/atom/test.txt	 ---- Modified
+2013-10-11 23:16:21,800 /home/pentester/atom/tmp.py	 ---- Modified
+2013-10-11 23:16:21,801 /home/pentester/atom/test5.txt	 ---- Not exist
+2013-10-11 23:16:21,801 /home/pentester/atom/news/test.txt	 ---- Not exist
+2013-10-11 23:16:21,807 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:20:25,730 /home/pentester/atom/test.txt	 ---- Modified
+2013-10-11 23:20:25,731 ['+ test\n']
+2013-10-11 23:20:25,738 /home/pentester/atom/tmp.py	 ---- Modified
+2013-10-11 23:20:25,739 ['  #!/usr/bin/python\n', '  # -*- coding: utf-8 -*-\n', '  \n', '  import feedparser\n', '  import sys\n', '  import glob\n', '- \n', "- print ''\n", '  \n', '  def fixStr(inputStr):\n', '    strTmp = inputStr\n', "    return eval(str(strTmp[0]))['value']\n", '  \n', "  feedOld = feedOld = feedparser.parse('/var/www/atom/trung-quoc.rss')\n", '  numFeedOld = len(feedOld["items"])\n', '  \n', '  for i in range(0,len(feedOld["items"])):\n', '  \tprint i\n', '  \tprint feedOld["items"][i]\n', '  \ttry:\n', '  \t\tcontent = fixStr(feedOld["items"][i]["content"])\n', '  \texcept:\n', '  \t\tcontent = feedOld["items"][i]["title"]\n', '- \tprint content\n', '+ \t#print content\n', '? \t+\n', '  \t#raw_input()\n', '+ exit()\n']
+2013-10-11 23:20:25,739 /home/pentester/atom/test5.txt	 ---- Not exist
+2013-10-11 23:20:25,740 /home/pentester/atom/news/test.txt	 ---- Not exist
+2013-10-11 23:20:25,745 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:20:35,686 /home/pentester/atom/test.txt	 ---- Modified
+2013-10-11 23:20:35,687 ['+ test\n']
+2013-10-11 23:20:35,694 /home/pentester/atom/tmp.py	 ---- Modified
+2013-10-11 23:20:35,694 ['  #!/usr/bin/python\n', '  # -*- coding: utf-8 -*-\n', '  \n', '  import feedparser\n', '  import sys\n', '  import glob\n', '- \n', "- print ''\n", '  \n', '  def fixStr(inputStr):\n', '    strTmp = inputStr\n', "    return eval(str(strTmp[0]))['value']\n", '  \n', "  feedOld = feedOld = feedparser.parse('/var/www/atom/trung-quoc.rss')\n", '  numFeedOld = len(feedOld["items"])\n', '  \n', '  for i in range(0,len(feedOld["items"])):\n', '  \tprint i\n', '  \tprint feedOld["items"][i]\n', '  \ttry:\n', '  \t\tcontent = fixStr(feedOld["items"][i]["content"])\n', '  \texcept:\n', '  \t\tcontent = feedOld["items"][i]["title"]\n', '- \tprint content\n', '+ \t#print content\n', '? \t+\n', '  \t#raw_input()\n', '+ exit()\n']
+2013-10-11 23:20:35,695 /home/pentester/atom/test5.txt	 ---- Not exist
+2013-10-11 23:20:35,695 /home/pentester/atom/news/test.txt	 ---- Not exist
+2013-10-11 23:20:35,701 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:20:47,002 /home/pentester/atom/test.txt	 ---- Modified
+2013-10-11 23:20:47,003 ['+ test\n']
+2013-10-11 23:20:47,010 /home/pentester/atom/tmp.py	 ---- Modified
+2013-10-11 23:20:47,011 ['  #!/usr/bin/python\n', '  # -*- coding: utf-8 -*-\n', '  \n', '  import feedparser\n', '  import sys\n', '  import glob\n', '- \n', "- print ''\n", '  \n', '  def fixStr(inputStr):\n', '    strTmp = inputStr\n', "    return eval(str(strTmp[0]))['value']\n", '  \n', "  feedOld = feedOld = feedparser.parse('/var/www/atom/trung-quoc.rss')\n", '  numFeedOld = len(feedOld["items"])\n', '  \n', '  for i in range(0,len(feedOld["items"])):\n', '  \tprint i\n', '  \tprint feedOld["items"][i]\n', '  \ttry:\n', '  \t\tcontent = fixStr(feedOld["items"][i]["content"])\n', '  \texcept:\n', '  \t\tcontent = feedOld["items"][i]["title"]\n', '- \tprint content\n', '+ \t#print content\n', '? \t+\n', '  \t#raw_input()\n', '+ exit()\n']
+2013-10-11 23:20:47,012 /home/pentester/atom/test5.txt	 ---- Not exist
+2013-10-11 23:20:47,012 /home/pentester/atom/news/test.txt	 ---- Not exist
+2013-10-11 23:20:47,017 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:21:17,922 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:21:17,922 /home/pentester/atom/news	 ---- New folder
+2013-10-11 23:25:51,928 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:25:51,928 /home/pentester/atom/news	 ---- New folder
+2013-10-11 23:25:55,559 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:25:55,559 /home/pentester/atom/news	 ---- New folder
+2013-10-11 23:26:50,819 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:26:50,819 /home/pentester/atom/news	 ---- New folder
+2013-10-11 23:27:12,761 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:27:12,761 /home/pentester/atom/news	 ---- New folder
+2013-10-11 23:30:39,781 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:30:39,781 /home/pentester/atom/news	 ---- New folder
+2013-10-11 23:30:46,867 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:30:46,867 /home/pentester/atom/news	 ---- New folder
+2013-10-11 23:41:26,137 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:41:26,137 /home/pentester/atom/news	 ---- New folder
+2013-10-11 23:42:22,219 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:42:22,219 /home/pentester/atom/news	 ---- New folder
+2013-10-11 23:43:10,990 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:43:10,990 /home/pentester/atom/news	 ---- New folder
+2013-10-11 23:48:37,622 /home/pentester/atom/tmp.py	 ---- Modified
+2013-10-11 23:48:37,624 ['  #!/usr/bin/python\n', '  # -*- coding: utf-8 -*-\n', '  \n', '  import feedparser\n', '  import sys\n', '  import glob\n', '  \n', '  def fixStr(inputStr):\n', '    strTmp = inputStr\n', "    return eval(str(strTmp[0]))['value']\n", '  \n', "  feedOld = feedOld = feedparser.parse('/var/www/atom/trung-quoc.rss')\n", '  numFeedOld = len(feedOld["items"])\n', '  \n', '  for i in range(0,len(feedOld["items"])):\n', '  \tprint i\n', '  \tprint feedOld["items"][i]\n', '  \ttry:\n', '  \t\tcontent = fixStr(feedOld["items"][i]["content"])\n', '  \texcept:\n', '  \t\tcontent = feedOld["items"][i]["title"]\n', '- \t#print content\n', '- \t#raw_input()\n', '? \t-\n', '+ \traw_input()\n', '- exit()\n', '+ #exit()\n', '? +\n', "+ print 'a'\n"]
+2013-10-11 23:48:37,637 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:48:37,637 /home/pentester/atom/news	 ---- New folder
+2013-10-11 23:50:29,713 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:50:29,713 /home/pentester/atom/news	 ---- New folder
+2013-10-11 23:50:49,922 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:50:49,922 /home/pentester/atom/news	 ---- New folder
+2013-10-11 23:50:54,691 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:50:54,691 /home/pentester/atom/news	 ---- New folder
+2013-10-11 23:51:43,654 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:51:43,654 /home/pentester/atom/news	 ---- New folder
+2013-10-11 23:52:08,272 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:52:08,273 /home/pentester/atom/news	 ---- New folder
+2013-10-11 23:53:45,944 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:53:45,944 /home/pentester/atom/news	 ---- New folder
+2013-10-11 23:54:09,918 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:54:09,918 /home/pentester/atom/news	 ---- New folder
+2013-10-11 23:54:34,952 /home/pentester/atom/news2	 ---- New folder
+2013-10-11 23:54:34,952 /home/pentester/atom/news	 ---- New folder
+2013-10-12 00:45:22,119 /home/pentester/atom/vietjovi	 ---- New folder
+2013-10-12 00:46:14,447 /home/pentester/atom/test2.txt	 ---- Modified
+2013-10-12 00:50:21,854 /home/pentester/atom/test4.txt	 ---- Modified
