@@ -6,10 +6,10 @@ INSTALL
 =======  
 1. Installl Python 2.7 or higher.
 2. Install Pip (recommend) or Easy Install (package manager for Python).  
-	For Ubuntu/Debian
+For Ubuntu/Debian
 > sudo apt-get install python-pip
 
-	For Fedora/Centos
+For Fedora/Centos
 > sudo yum -y install python-pip
 
 	For Windows
