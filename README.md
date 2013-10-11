@@ -27,19 +27,19 @@ HOW TO USE
 
 2. Configuration  
 __udetect.conf__  
-	[main_config]  
-	email = unstester@gmail.com  
-	smtp_pass = noP@ssW0rd  
-	smtp_port = 587  
-	smtp_server = smtp.gmail.com  
-	email_default = vietnguyen@uns.vn // if project 's email is default, Udetect will use this field to replace  
-
-	[atom]  
-	enable = 1 //enable = 1, disable = 0  
-	white_ext = * // manage extensions exclusions. Ex: .txt .tmp  
-	white_dir = * // manage folders, files exclusions. Ex: /home/tester/test/logs/ /home/tester/test/cache/  
-	email = default // When detect changes to files, folder, __Udetect__ send alert to this email, set default to use email_default 's value  
-	type = fast //fast, full
+>	[main_config]  
+>	email = unstester@gmail.com  
+>	smtp_pass = noP@ssW0rd  
+>	smtp_port = 587  
+>	smtp_server = smtp.gmail.com  
+>	email_default = vietnguyen@uns.vn // if project 's email is default, Udetect will use this field to replace  
+>
+>	[atom]  
+>	enable = 1 //enable = 1, disable = 0  
+>	white_ext = * // manage extensions exclusions. Ex: .txt .tmp  
+>	white_dir = * // manage folders, files exclusions. Ex: /home/tester/test/logs/ /home/tester/test/cache/  
+>	email = default // When detect changes to files, folder, __Udetect__ send alert to this email, set default to use email_default 's value  
+>	type = fast //fast, full
 
 3. Run manual (or use Crontab on Linux)
 >python udetect.py start  
