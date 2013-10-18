@@ -10,9 +10,11 @@ import difflib
 import logging
 import logging.handlers
 import smtplib
+import datetime
 
 LOG_FILENAME = 'udetect.log'
 LOG_MAXSIZE = 10*1024 #10 MB
+
 #
 #varialble
 #
@@ -25,10 +27,10 @@ elif os.name == "nt":
 else:
     print "can not detect OS!"
     exit(2)
+
 #
 #functions
 #  
-
 
 def createProject(pName, sDir, version = 1):
     try:
@@ -241,6 +243,7 @@ def checkProject(pName, type="fast", white_dir = '*', white_ext = '*'):
     lstFilesNewSum = []
     lstDirsNew = []
     fName = 'log' + pathSep + LOG_FILENAME
+    #open('output' + pathSep + pName + '.html', 'w').close()
     logging.basicConfig(filename=fName, level=logging.DEBUG, format='%(asctime)s %(message)s')
     handler = logging.handlers.RotatingFileHandler(LOG_FILENAME, maxBytes=LOG_MAXSIZE, backupCount=5)
     # logging.debug('minion')
@@ -286,7 +289,6 @@ def checkProject(pName, type="fast", white_dir = '*', white_ext = '*'):
             if checkWhiteList(white_dir, white_ext, path + pathSep + f):
                 lstFilesNew.append(cleanStr(path + pathSep + f))
 
-
     for x in os.walk(srcDir):
         if checkWhiteList(white_dir, white_ext, x[0]):
             lstDirsNew.append(x[0])
@@ -313,7 +315,16 @@ def checkProject(pName, type="fast", white_dir = '*', white_ext = '*'):
                 logging.warning(msgTmp)
                 diffCount += 1
                 if type == 'full':
-                    msg += compareFiles(x.replace(srcDir,"projects" + pathSep + pName), x)
+                    try:
+                        f = open('output' + pathSep + pName + str(datetime.date.today()) + '.html', 'a')
+                        strTmp = '<hr>'
+                        f.write(strTmp)
+                        f.write(x)
+                        f.write(compareFiles(x.replace(srcDir,"projects" + pathSep + pName), x))
+                        f.close()
+                    except:
+                        print "Can't create file in directory 'output'"
+                        pass
 
     #Check Directories
     for x in lstDirsOrg:
@@ -329,7 +340,7 @@ def checkProject(pName, type="fast", white_dir = '*', white_ext = '*'):
             msg += msgTmp + "\n"
             logging.warning(msgTmp)
             diffCount += 1
-
+    exit()
     if diffCount < 1:
         return True
     updateProject(pName, srcDir)
@@ -347,7 +358,7 @@ def compareFiles(f1, f2):
     #     if line[0] == '-':
     #         print line
     #sys.stdout.writelines(diffLst)
-    logging.warning(diffLst)
+    # logging.warning(diffLst)
     msg = difflib.HtmlDiff().make_file(text1Lines, text2Lines)
     return msg
 #
