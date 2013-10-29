@@ -316,7 +316,7 @@ def checkProject(pName, type="fast", white_dir = '*', white_ext = '*'):
                 diffCount += 1
                 if type == 'full':
                     try:
-                        f = open('output' + pathSep + pName + str(datetime.date.today()) + '.html', 'a')
+                        f = open('output' + pathSep + pName + "_" + str(datetime.date.today()) + '.html', 'a')
                         strTmp = '<hr>'
                         f.write(strTmp)
                         f.write(x)
@@ -329,7 +329,6 @@ def checkProject(pName, type="fast", white_dir = '*', white_ext = '*'):
     #Check Directories
     for x in lstDirsOrg:
         if x not in lstDirsNew:
-            print x
             msgTmp = cleanStr(x + "\t ---- Not exist")
             msg += msgTmp + "\n"
             logging.warning(msgTmp)
@@ -337,12 +336,11 @@ def checkProject(pName, type="fast", white_dir = '*', white_ext = '*'):
 
     for x in lstDirsNew:
         if x not in lstDirsOrg:
-            print x
             msgTmp = cleanStr(x + "\t ---- New folder")
             msg += msgTmp + "\n"
             logging.warning(msgTmp)
             diffCount += 1
-    exit()
+
     if diffCount < 1:
         return True
     updateProject(pName, srcDir)
