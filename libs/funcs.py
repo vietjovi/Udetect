@@ -274,7 +274,7 @@ def checkProject(pName, type="fast", white_dir = '*', white_ext = '*'):
 #create list files, dirs org
     for i in lstOrgDir:
         if checkWhiteList(white_dir, white_ext, i):
-            lstDirsOrg.append(i)
+            lstDirsOrg.append(cleanStr(i + pathSep))
 
     for i in lstOrg:
         fileTmp = i[0] + pathSep + i[1][0]
@@ -291,7 +291,7 @@ def checkProject(pName, type="fast", white_dir = '*', white_ext = '*'):
 
     for x in os.walk(srcDir):
         if checkWhiteList(white_dir, white_ext, x[0]):
-            lstDirsNew.append(x[0])
+            lstDirsNew.append(cleanStr(x[0] +  pathSep))
 
 #start check
     for x in lstFilesNew:
@@ -329,6 +329,7 @@ def checkProject(pName, type="fast", white_dir = '*', white_ext = '*'):
     #Check Directories
     for x in lstDirsOrg:
         if x not in lstDirsNew:
+            print x
             msgTmp = cleanStr(x + "\t ---- Not exist")
             msg += msgTmp + "\n"
             logging.warning(msgTmp)
@@ -336,6 +337,7 @@ def checkProject(pName, type="fast", white_dir = '*', white_ext = '*'):
 
     for x in lstDirsNew:
         if x not in lstDirsOrg:
+            print x
             msgTmp = cleanStr(x + "\t ---- New folder")
             msg += msgTmp + "\n"
             logging.warning(msgTmp)
