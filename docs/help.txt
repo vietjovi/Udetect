@@ -9,7 +9,8 @@ Options:
   help									Show help  
 
 Example:
-  To backup 'www' directory:
+Create project
   python udetect.py create www /var/www/
+Run and Enjoy it!
   python udetect.py start
  

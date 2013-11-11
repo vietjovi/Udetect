@@ -23,7 +23,7 @@ INSTALL
 HOW TO USE
 ==========
 1. Create Project to monitor a folder
->python udetect.py create projectname /path/project/  
+>python udetect.py create projectname /path/directory_need_monitor/  
 
 2. Configuration  
 __udetect.conf__  
@@ -44,7 +44,7 @@ __udetect.conf__
 3. Run manual (or use Crontab on Linux)
 >python udetect.py start  
 
-4. If no use email, can view log file to get informations.  
+4. If no use email, can view log file to get informations. All logs saved into log folder (log/udetect.log)  
 
 SUPPORT
 =======
