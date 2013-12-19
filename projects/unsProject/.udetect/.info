@@ -1,0 +1,11 @@
+[unsProject]
+paths = /home/vietjovi/unsProject
+version = 1
+
+[files]
+lists = [['/home/vietjovi/unsProject', ['main2.conf', '827cc06049bf8c12fbb7d78f17e1ccd8']], ['/home/vietjovi/unsProject', ['main.conf', '827cc06049bf8c12fbb7d78f17e1ccd8']], ['/home/vietjovi/unsProject/log', ['output.log', 'cf0cdc012f71919a5ab607c156fa2649']]]
+listp = [['projects/unsProject', ['main2.conf', '827cc06049bf8c12fbb7d78f17e1ccd8']], ['projects/unsProject', ['main.conf', '827cc06049bf8c12fbb7d78f17e1ccd8']], ['projects/unsProject/log', ['output.log', 'cf0cdc012f71919a5ab607c156fa2649']]]
+
+[directories]
+listd = ['/home/vietjovi/unsProject', '/home/vietjovi/unsProject/log', '/home/vietjovi/unsProject/libs']
+

@@ -1,0 +1,35 @@
+Packet Crafting with Scapy
+Overview
+help
+
+asd
+
+Sendings and Receiving packets
+Arpspoofing, MITM
+packet=IP(dst=’google.com’)
+
+>>> a=sniff(filter=”icmp”, iface=”eth1″, timeout=10, count=3)
+
+>>> a.summary()
+
+>>> a[1]
+
+wrpcap(“mypackets.pcap”, a)
+
+>>> rdpkt=rdpcap(“mypackets.pcap”)
+
+>>> rdpkt.show()
+
+>>> rdpkt[1]
+
+ARP là một giao thức hết sức đơn giản, nó đơn thuần có 4 loại message cơ bản sau:
+
+    An ARP Request: máy tính A sẽ hỏi toàn mạng : " ai có địa chỉ IP này? "
+    An ARP Reply: máy tính B trả lời máy tính A : "tôi có IP đó, địa chỉ MAC của tôi là..."
+    An Reverse ARP Request: máy tính A sẽ hỏi toàn mạng : " ai có địa chỉ MAC này? "
+    An Reverse ARP Reply: máy tính B trả lời máy tính A: " tôi có MAC đó, địa chỉ IP của tôi là..."
+
+
+Create your own tools -> enjoy :D
+#Use API functions with Ctypes
+#Fuck Windows

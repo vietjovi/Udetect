@@ -1,0 +1,11 @@
+[Documents]
+paths = /home/vietjovi/Documents
+version = 1
+
+[files]
+lists = [['/home/vietjovi/Documents', ['noteUNSCON.txt', '49b5281782e1e9acf1e67482cd90a6dd']], ['/home/vietjovi/Documents', ['test', 'd41d8cd98f00b204e9800998ecf8427e']]]
+listp = [['projects/Documents', ['noteUNSCON.txt', '49b5281782e1e9acf1e67482cd90a6dd']], ['projects/Documents', ['test', 'd41d8cd98f00b204e9800998ecf8427e']]]
+
+[directories]
+listd = ['/home/vietjovi/Documents']
+

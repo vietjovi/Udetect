@@ -342,7 +342,7 @@ def checkProject(pName, type="fast", white_dir = '*', white_ext = '*'):
             diffCount += 1
 
     if diffCount < 1:
-        return True
+        return False
     updateProject(pName, srcDir)
     return msg
 
